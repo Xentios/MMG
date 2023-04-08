@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
 
     Rigidbody2D rb2D;
 
+    private float pushResistTimer=0.4f;
     private void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
@@ -20,11 +21,22 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (rb2D.velocity.x > 0)
+        {
+            pushResistTimer -= Time.deltaTime;
+        }
+
+       
         
     }
 
     private void FixedUpdate()
     {
+        if (pushResistTimer < 0f)
+        {
+            rb2D.velocity = Vector2.zero;
+            pushResistTimer = 2f;
+        }
         rb2D.AddForce(Vector2.left*1,ForceMode2D.Impulse);
     }
 

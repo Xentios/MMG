@@ -16,7 +16,7 @@ public class SimpleCharacterController : MonoBehaviour
 
     void Start()
     {
-        //shootTimer = shootTimerLimit;
+       // shootTimer = shootTimerLimit;
     }
 
     // Update is called once per frame
@@ -24,13 +24,13 @@ public class SimpleCharacterController : MonoBehaviour
     {
         shootTimer -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.UpArrow))
         {
             Debug.Log("Go Up");
             var y = transform.position.y + (moveSpeed * 154);
             transform.position = new Vector3(transform.position.x, y, transform.position.z);
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             Debug.Log("Go Down");
             var y = transform.position.y + (moveSpeed * -154);

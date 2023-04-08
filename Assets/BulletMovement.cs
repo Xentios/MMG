@@ -8,6 +8,8 @@ public class BulletMovement : MonoBehaviour
 
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private float strenght;
     void Start()
     {
         
@@ -17,5 +19,15 @@ public class BulletMovement : MonoBehaviour
     void Update()
     {
         transform.position += Vector3.right * speed *100 * Time.deltaTime;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("ZomWick"))
+        {
+            var ZomWick = collision.GetComponent<EnemyMovement>();
+            ZomWick.Push(Vector2.right * strenght);
+            Destroy(gameObject);
+        }
     }
 }
