@@ -10,6 +10,8 @@ public class TowerManager : MonoBehaviour
     [SerializeField]
     Sprite[] UItowers;
 
+    [SerializeField]
+    GameObject[] UITowers;
     // Update is called once per frame
     void Update()
     {
