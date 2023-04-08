@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class EnemyMovement : MonoBehaviour
 
     [SerializeField]
     LayerMask groundLayerMask;
+    [SerializeField]
+    GameObject WarningSign;
 
     Rigidbody2D rb2D;
 
@@ -21,6 +24,9 @@ public class EnemyMovement : MonoBehaviour
     private float stunTimer;
     private bool isStunned;
 
+    private float moveTimerReset = 5f;
+    private float moveTimer;
+
     private void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
@@ -30,6 +36,7 @@ public class EnemyMovement : MonoBehaviour
     {
         pushResistTimer = pushResistTimerSet;
         stunTimer = stunTimerSet;
+        moveTimer = moveTimerReset;
         CheckNewTerrain();        
     }
 
@@ -57,6 +64,17 @@ public class EnemyMovement : MonoBehaviour
             stunTimer = stunTimerSet;
         }
 
+        if (rb2D.velocity.y == 0)
+        {
+            moveTimer -= Time.deltaTime;
+            if (moveTimer < 0)
+            {
+                moveTimer = moveTimerReset;
+                ChooseAction();
+            }
+        }
+
+
         switch (terrainType)
         {
             case TerrainFeatures.TerrainType.Default:
@@ -74,6 +92,22 @@ public class EnemyMovement : MonoBehaviour
         }
 
 
+    }
+
+    private void ChooseAction()
+    {        
+        StartCoroutine(FlashWarning());
+    }
+
+    IEnumerator FlashWarning()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            WarningSign.SetActive(!WarningSign.activeSelf);
+            yield return new WaitForSeconds(0.3f);
+        }
+        var force = Random.Range(0, 1f) > 0.5f ? Vector2.up : Vector2.down;
+        Push(force);
     }
 
     private void FixedUpdate()
