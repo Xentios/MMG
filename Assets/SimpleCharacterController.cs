@@ -16,7 +16,7 @@ public class SimpleCharacterController : MonoBehaviour
 
     void Start()
     {
-        shootTimer = shootTimerLimit;
+        //shootTimer = shootTimerLimit;
     }
 
     // Update is called once per frame
