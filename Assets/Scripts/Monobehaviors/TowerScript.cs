@@ -7,6 +7,8 @@ public class TowerScript : MonoBehaviour
     private Tower towerType;
 
     [SerializeField]
+    private bool isTop;
+    [SerializeField]
     private TowerTypes selectedTowerTypes;
     [SerializeField]
     private GameObject rockPrefab;
@@ -28,10 +30,10 @@ public class TowerScript : MonoBehaviour
         switch (selectedTowerTypes)
         {
             case TowerTypes.Wind:
-            towerType = new TowerWind(3f, true);
+            towerType = new TowerWind(3f, isTop);
             break;
             case TowerTypes.Stun:
-            towerType = new TowerStun(3f, false);
+            towerType = new TowerStun(3f, isTop);
             break;
             default:
             break;
