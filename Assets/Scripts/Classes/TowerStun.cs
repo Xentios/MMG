@@ -4,23 +4,19 @@ using UnityEngine;
 
 public class TowerStun : Tower
 {
-    private int ammoCount=2;
+    private int ammoCount=2;    
     public TowerStun(float timeLimit, bool isTop) : base(timeLimit, isTop)
     {
     }
 
-    public override void HandleZomWick(Collider2D collision)
+    public override bool HandleZomWick(Collider2D collision)
     {
-        if (ammoCount <= 0) return;
-        if (effectTimer > 0) return;
+        if (ammoCount <= 0) return false;
+        if (effectTimer > 0) return false;
 
         ammoCount--;
-        var ZomWick = collision.gameObject.GetComponent<EnemyMovement>();
-        if (ZomWick.terrainType != TerrainFeatures.TerrainType.Ice)
-        {
-            ZomWick.Stun();
-        }
-
-        throw new System.NotImplementedException();
+        effectTimer = effectTimerLimit;       
+        return true;
     }
+ 
 }
