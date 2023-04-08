@@ -3333,7 +3333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743528971}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5430,6 +5430,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layoutElement: {fileID: 1156157043}
+  towerSpotLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  myPrefab: {fileID: 1537388666966711671, guid: 02463ca5817bb4a48ad3f6a59634f51f, type: 3}
 --- !u!114 &1156157043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6156,6 +6160,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower Slot
       objectReference: {fileID: 0}
+    - target: {fileID: 8477490053763885913, guid: fe1ac04d7a24f3549bd23dbad538d820, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8477490053763885914, guid: fe1ac04d7a24f3549bd23dbad538d820, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -6170,7 +6178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8477490053763885914, guid: fe1ac04d7a24f3549bd23dbad538d820, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8477490053763885914, guid: fe1ac04d7a24f3549bd23dbad538d820, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7061,6 +7069,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower Slot (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8477490053763885913, guid: fe1ac04d7a24f3549bd23dbad538d820, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8477490053763885914, guid: fe1ac04d7a24f3549bd23dbad538d820, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -7075,7 +7087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8477490053763885914, guid: fe1ac04d7a24f3549bd23dbad538d820, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8477490053763885914, guid: fe1ac04d7a24f3549bd23dbad538d820, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7379,6 +7391,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower Slot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8477490053763885913, guid: fe1ac04d7a24f3549bd23dbad538d820, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8477490053763885914, guid: fe1ac04d7a24f3549bd23dbad538d820, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -7393,7 +7409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8477490053763885914, guid: fe1ac04d7a24f3549bd23dbad538d820, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8477490053763885914, guid: fe1ac04d7a24f3549bd23dbad538d820, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7793,6 +7809,58 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8477490053763885914, guid: c11e2c941b877074b989b32141ae034b, type: 3}
   m_PrefabInstance: {fileID: 1711902003}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1713935437 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8477490053763885913, guid: fe1ac04d7a24f3549bd23dbad538d820, type: 3}
+  m_PrefabInstance: {fileID: 1624994367}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1713935440
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713935437}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!50 &1713935441
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713935437}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &1715503419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8756,9 +8824,10 @@ GameObject:
   - component: {fileID: 1929154436}
   - component: {fileID: 1929154435}
   - component: {fileID: 1929154439}
+  - component: {fileID: 1929154440}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8885,6 +8954,22 @@ MonoBehaviour:
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
+--- !u!114 &1929154440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929154433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56666c5a40171f54783dd416a44f42bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 256
+  m_MaxRayIntersections: 0
 --- !u!1001 &1940248136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8958,6 +9043,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower Slot (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8477490053763885913, guid: fe1ac04d7a24f3549bd23dbad538d820, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8477490053763885914, guid: fe1ac04d7a24f3549bd23dbad538d820, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -8972,7 +9061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8477490053763885914, guid: fe1ac04d7a24f3549bd23dbad538d820, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8477490053763885914, guid: fe1ac04d7a24f3549bd23dbad538d820, type: 3}
       propertyPath: m_LocalRotation.w

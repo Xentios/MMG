@@ -19,7 +19,7 @@ public class TowerScript : MonoBehaviour
     private AudioClip shotSound;
 
     private AudioSource audioSource;
-    enum TowerTypes
+    public enum TowerTypes
     {
         Wind,
         Stun
