@@ -7,11 +7,16 @@ public class TowerScript : MonoBehaviour
     private Tower towerType;
 
     [SerializeField]
-    private TowerTypes SelectedTowerTypes;
+    private TowerTypes selectedTowerTypes;
     [SerializeField]
     private GameObject rockPrefab;
     [SerializeField]
     private Transform visual;
+
+    [SerializeField]
+    private AudioClip shotSound;
+
+    private AudioSource audioSource;
     enum TowerTypes
     {
         Wind,
@@ -20,7 +25,7 @@ public class TowerScript : MonoBehaviour
 
     private void Awake()
     {
-        switch (SelectedTowerTypes)
+        switch (selectedTowerTypes)
         {
             case TowerTypes.Wind:
             towerType = new TowerWind(3f, true);
@@ -31,14 +36,10 @@ public class TowerScript : MonoBehaviour
             default:
             break;
         }
-        
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = shotSound;
     }
 
-    void Start()
-    {
-
-       // visual = GetComponentInChildren<Transform>();
-    }
 
     
     void Update()
@@ -52,6 +53,7 @@ public class TowerScript : MonoBehaviour
             if (towerType.HandleZomWick(collision))
             {
                 Instantiate(rockPrefab, transform.position, Quaternion.identity);
+                audioSource.Play();
             }            
         }
     }
