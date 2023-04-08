@@ -7,6 +7,8 @@ public class EnemyMovement : MonoBehaviour
 
     Rigidbody2D rb2D;
 
+    
+
     private float pushResistTimer=0.4f;
     private void Awake()
     {
