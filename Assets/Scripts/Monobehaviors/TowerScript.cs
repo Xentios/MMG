@@ -31,7 +31,7 @@ public class TowerScript : MonoBehaviour
             towerType = new TowerWind(3f, true);
             break;
             case TowerTypes.Stun:
-            towerType = new TowerStun(3f, true);
+            towerType = new TowerStun(3f, false);
             break;
             default:
             break;

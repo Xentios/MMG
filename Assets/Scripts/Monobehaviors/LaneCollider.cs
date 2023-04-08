@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class LaneCollider : MonoBehaviour
 {
-    [SerializeField]
-    public TerrainFeatures.TerrainType terrainType;
+
 
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -19,14 +18,5 @@ public class LaneCollider : MonoBehaviour
     }
 
   
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        return;
-        if (collision.CompareTag("ZomWick"))
-        {
-            var ZomWick = collision.gameObject.GetComponent<EnemyMovement>();
-            ZomWick.terrainType = terrainType;
-            Debug.Log(ZomWick.terrainType);
-        }
-    }
+   
 }

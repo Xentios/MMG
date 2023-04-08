@@ -18,7 +18,7 @@ public class EnemyMovement : MonoBehaviour
     private float pushResistTimerSet = 0.4f;
     private float pushResistTimer;
 
-    private float speedModifier = 1f;
+    private float speedModifier = 0.01f;
 
     private  float stunTimerSet = 1f;
     private float stunTimer;
@@ -78,7 +78,7 @@ public class EnemyMovement : MonoBehaviour
         switch (terrainType)
         {
             case TerrainFeatures.TerrainType.Default:
-            speedModifier = 1f;
+            speedModifier = 0.01f;
             break;
             case TerrainFeatures.TerrainType.Booster:
             speedModifier = 2f;
@@ -132,14 +132,14 @@ public class EnemyMovement : MonoBehaviour
   
     public void Push( Vector2 pushForce)
     {
-        rb2D.AddForce(pushForce * 10000, ForceMode2D.Force);        
+        rb2D.AddForce(pushForce * 100, ForceMode2D.Force);        
     }
 
     public void CheckNewTerrain()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down,1, groundLayerMask);
         if(hit.collider!=null)
-            terrainType = hit.collider.GetComponent<LaneCollider>().terrainType;
+            terrainType = hit.collider.GetComponent<GroundScript>().terrainType;
     }
  
 

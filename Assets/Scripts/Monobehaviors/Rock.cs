@@ -17,16 +17,22 @@ public class Rock : MonoBehaviour
     private bool isDisabled;
     void Start()
     {
-        way =Mathf.Sign( 0 - transform.position.y);
-        randomStopRange = Random.Range(0, -10*way);
-        randomSpeedModifier = Random.Range(1, 1.3f);
+        way =Mathf.Sign( -1 - transform.position.y);
+        randomStopRange = Random.Range(0, -3*way);
+        randomSpeedModifier = Random.Range(1, 1f);
     }
 
     // Update is called once per frame
     void Update()
     {       
-        if (isDisabled) return;
-        transform.position =new Vector2(transform.position.x, transform.position.y+speed*1000* way * randomSpeedModifier * Time.deltaTime);        
+        if (isDisabled) return;       
+        //transform.position =new Vector2(transform.position.x, transform.position.y+ 0.001f * Time.deltaTime);
+        if (transform.position.y < randomStopRange) isDisabled = true;
+    }
+
+    private void FixedUpdate()
+    {
+        //GetComponent<Rigidbody2D>().AddForce(Vector2.up/1000f, ForceMode2D.Force);
     }
 
 
