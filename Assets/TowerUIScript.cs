@@ -36,14 +36,16 @@ public class TowerUIScript : MonoBehaviour, IPointerEnterHandler,IPointerDownHan
     public void OnPointerUp(PointerEventData eventData)
     {
         var pos=Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit= Physics2D.Raycast(pos, Vector2.down, 1, towerSpotLayerMask);       
-        if (hit.collider == null)
+        RaycastHit2D hit= Physics2D.Raycast(pos, Vector2.down, 1, towerSpotLayerMask);
+        ;
+        if (hit.collider == null || hit.collider.GetComponent<TowerSlot>().isOccupied)
         {
             isDragging = false;
             layoutElement.ignoreLayout = false;
         }
         else
         {
+            
             TowerManager.CreateTower(hit.collider.gameObject, myPrefab);
             transform.gameObject.SetActive(false);//TODO may need reset of fields 
 

@@ -18,5 +18,12 @@ public class TowerStun : Tower
         effectTimer = effectTimerLimit;       
         return true;
     }
- 
+
+    public override void Update(float deltaTime)
+    {
+        base.Update(deltaTime);
+        if (ammoCount > 0) return;
+
+    }
+
 }

@@ -19,7 +19,7 @@ public abstract class Tower
     public abstract bool HandleZomWick(Collider2D collision);
 
 
-    public void Update(float deltaTime)
+    public virtual void Update(float deltaTime)
     {
         effectTimer -= deltaTime;
     }

@@ -81,7 +81,7 @@ public class EnemyMovement : MonoBehaviour
             speedModifier = 0.01f;
             break;
             case TerrainFeatures.TerrainType.Booster:
-            speedModifier = 2f;
+            speedModifier = 0.01f*6f;
             break;
             case TerrainFeatures.TerrainType.Ice:
             break;
@@ -137,7 +137,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void CheckNewTerrain()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down,1, groundLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down,1f, groundLayerMask);       
         if(hit.collider!=null)
             terrainType = hit.collider.GetComponent<GroundScript>().terrainType;
     }

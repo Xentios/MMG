@@ -7,9 +7,9 @@ public class TowerScript : MonoBehaviour
     private Tower towerType;
 
     [SerializeField]
-    private bool isTop;
+    public bool isTop;
     [SerializeField]
-    private TowerTypes selectedTowerTypes;
+    public TowerTypes selectedTowerTypes;
     [SerializeField]
     private GameObject rockPrefab;
     [SerializeField]

@@ -9,7 +9,7 @@ public class GroundScript : MonoBehaviour
 
     private void Awake()
     {
-        gameObject.layer = LayerMask.NameToLayer("Ground");
+        //gameObject.layer = LayerMask.NameToLayer("Ground");
     }
     // Start is called before the first frame update
     void Start()

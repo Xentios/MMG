@@ -6,6 +6,8 @@ public class Rock : MonoBehaviour
 {
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private Animator animator;
 
 
     private float way;
@@ -26,8 +28,8 @@ public class Rock : MonoBehaviour
     void Update()
     {       
         if (isDisabled) return;       
-        //transform.position =new Vector2(transform.position.x, transform.position.y+ 0.001f * Time.deltaTime);
-        if (transform.position.y < randomStopRange) isDisabled = true;
+        transform.position =new Vector2(transform.position.x, transform.position.y+ way*randomSpeedModifier *speed* Time.deltaTime);
+        //if (transform.position.y < randomStopRange) isDisabled = true;
     }
 
     private void FixedUpdate()
@@ -56,9 +58,11 @@ public class Rock : MonoBehaviour
         //TODO  make more juicy.
         var rb2D = GetComponent<Rigidbody2D>();
         Vector2 randomVector = Random.insideUnitCircle;
-        rb2D.AddRelativeForce(randomVector*2f);
+        rb2D.AddRelativeForce(randomVector*0.001f);
         rb2D.drag = 1.2f;
         yield return new WaitForSeconds(0.3f);
+        animator.SetTrigger("Hit");
+        //TODO Super Hero Landing Sound
         rb2D.velocity = Vector2.zero;
     }
 }

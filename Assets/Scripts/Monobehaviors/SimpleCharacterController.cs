@@ -27,13 +27,13 @@ public class SimpleCharacterController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.UpArrow))
         {
             Debug.Log("Go Up");
-            var y = transform.position.y + (moveSpeed * 154);
+            var y = transform.position.y + (moveSpeed * 1);
             transform.position = new Vector3(transform.position.x, y, transform.position.z);
         }
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             Debug.Log("Go Down");
-            var y = transform.position.y + (moveSpeed * -154);
+            var y = transform.position.y + (moveSpeed * -1);
             transform.position = new Vector3(transform.position.x, y, transform.position.z);
         }
         if (Input.GetKeyDown(KeyCode.Space))
