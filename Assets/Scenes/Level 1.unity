@@ -577,7 +577,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 540
+  orthographic size: 5.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -654,9 +654,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
-  m_AssetsPPU: 1
-  m_RefResolutionX: 1920
-  m_RefResolutionY: 1080
+  m_AssetsPPU: 10
+  m_RefResolutionX: 192
+  m_RefResolutionY: 108
   m_CropFrame: 2
   m_GridSnapping: 0
   m_UpscaleRT: 0
@@ -906,7 +906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a07a7b533c28534d904602a7e41511a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainType: 0
+  terrainType: 2
 --- !u!61 &551123089
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1107,7 +1107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a07a7b533c28534d904602a7e41511a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainType: 0
+  terrainType: 3
 --- !u!61 &754551892
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1302,7 +1302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullet: {fileID: 4085236999656355576, guid: 925b7fa8c0f1974418bb1336f529f98a, type: 3}
   moveSpeed: 1
-  shootTimerLimit: 2
+  shootTimerLimit: 3
 --- !u!1971053207 &1331158922
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0

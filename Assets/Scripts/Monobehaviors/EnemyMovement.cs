@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,9 @@ public class EnemyMovement : MonoBehaviour
 
     private float speedModifier = 1f;
 
+    private  float stunTimerSet = 1f;
+    private float stunTimer;
+    private bool isStunned;
 
     private void Awake()
     {
@@ -25,7 +29,13 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         pushResistTimer = pushResistTimerSet;
+        stunTimer = stunTimerSet;
         CheckNewTerrain();        
+    }
+
+    public void Stun()
+    {
+        isStunned = true;
     }
 
     // Update is called once per frame
@@ -36,13 +46,24 @@ public class EnemyMovement : MonoBehaviour
             pushResistTimer -= Time.deltaTime;
         }
 
+        if (isStunned)
+        {
+            stunTimer -= Time.deltaTime;
+        }
+
+        if (stunTimer < 0)
+        {
+            isStunned = false;
+            stunTimer = stunTimerSet;
+        }
+
         switch (terrainType)
         {
             case TerrainFeatures.TerrainType.Default:
             speedModifier = 1f;
             break;
             case TerrainFeatures.TerrainType.Booster:
-            speedModifier = 4f;
+            speedModifier = 2f;
             break;
             case TerrainFeatures.TerrainType.Ice:
             break;
@@ -62,14 +83,19 @@ public class EnemyMovement : MonoBehaviour
             rb2D.velocity = new Vector2(0,rb2D.velocity.y);
             pushResistTimer = pushResistTimerSet;
         }
-        rb2D.AddForce(Vector2.left*speedModifier,ForceMode2D.Impulse);
+
+        if (isStunned)
+        {
+            if (terrainType != TerrainFeatures.TerrainType.Ice) rb2D.velocity = Vector2.zero;//TODO WARNING this stops other effects.
+        }
+        else
+        {
+            rb2D.AddForce(Vector2.left * speedModifier, ForceMode2D.Impulse);
+        }
+        
     }
 
-    public void PushHorizantal()
-    {
-       
-    }
-
+  
     public void Push( Vector2 pushForce)
     {
         rb2D.AddForce(pushForce * 10000, ForceMode2D.Force);        
