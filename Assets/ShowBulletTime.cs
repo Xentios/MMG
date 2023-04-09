@@ -13,7 +13,7 @@ public class ShowBulletTime : MonoBehaviour
 
     private void Update()
     {
-        textField.text = "Reloading in" + " : " +(int) Mathf.Max(0f,simpleCharacterController.shootTimer)+ "";
+        textField.text = "" +(int) Mathf.Max(0f,simpleCharacterController.shootTimer);
     }
 
 }
