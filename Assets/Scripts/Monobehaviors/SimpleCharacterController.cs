@@ -20,6 +20,11 @@ public class SimpleCharacterController : MonoBehaviour
 
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip[] shootingSounds;
     void Start()
     {
        // shootTimer = shootTimerLimit;
@@ -52,6 +57,9 @@ public class SimpleCharacterController : MonoBehaviour
         Instantiate(Bullet,transform.position,Quaternion.identity);
         shootTimer = shootTimerLimit;
         animator.SetTrigger("Shoot");
+        var soundClip = shootingSounds[Random.Range(0, shootingSounds.Length)];
+        audioSource.clip = soundClip;
+        audioSource.Play();
     }
 
     private void MoveUp()
