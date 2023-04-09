@@ -3464,8 +3464,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Timer:000
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5831,14 +5831,14 @@ Transform:
   - {fileID: 1273717527}
   - {fileID: 674049378}
   - {fileID: 1406623547}
-  - {fileID: 1867619981}
   - {fileID: 495113761}
+  - {fileID: 1867619981}
   - {fileID: 1289827611}
   - {fileID: 301623675}
   - {fileID: 1495173066}
   - {fileID: 565343747}
-  - {fileID: 463310996}
   - {fileID: 2084839496}
+  - {fileID: 463310996}
   - {fileID: 1554153946}
   m_Father: {fileID: 852216633}
   m_RootOrder: 3
