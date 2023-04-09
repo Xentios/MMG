@@ -28,6 +28,17 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     Animator animator;
 
+    [SerializeField]
+    AudioClip[] hurtClips;
+    [SerializeField]
+    AudioSource hurtAudioSource;
+    [SerializeField]
+    AudioClip[] walkClips;
+    [SerializeField]
+    AudioSource walkAudioSource;
+
+
+
     Rigidbody2D rb2D;
 
     private float pushResistTimerSet = 0.4f;
@@ -44,7 +55,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Awake()
     {
-        rb2D = GetComponent<Rigidbody2D>();
+        rb2D = GetComponent<Rigidbody2D>();       
     }
     // Start is called before the first frame update
     void Start()
@@ -58,6 +69,8 @@ public class EnemyMovement : MonoBehaviour
     public void Stun()
     {
         isStunned = true;
+        var clip=hurtClips[Random.Range(0, hurtClips.Length)];
+        if(clip!=null) hurtAudioSource.PlayOneShot(clip);
     }
 
     // Update is called once per frame
@@ -106,7 +119,8 @@ public class EnemyMovement : MonoBehaviour
             default:
             break;
         }
-
+       
+        
 
     }
 
@@ -169,9 +183,15 @@ public class EnemyMovement : MonoBehaviour
 
     public void CheckNewTerrain()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down,1f, groundLayerMask);       
-        if(hit.collider!=null)
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down,1f, groundLayerMask);
+        if (hit.collider != null)
+        {
             terrainType = hit.collider.GetComponent<GroundScript>().terrainType;
+            walkAudioSource.clip = walkClips[(int) terrainType];
+            walkAudioSource.Play();
+        }
+          
+       
     }
  
 
