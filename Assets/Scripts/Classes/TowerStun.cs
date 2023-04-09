@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class TowerStun : Tower
 {
-    private int ammoCount=2;    
-    public TowerStun(float timeLimit, bool isTop) : base(timeLimit, isTop)
+    private int ammoCount=2;
+
+    public TowerStun(float timeLimit, bool isTop, float offTimeLimit) : base(timeLimit, isTop, offTimeLimit)
     {
     }
 
@@ -15,14 +16,26 @@ public class TowerStun : Tower
         if (effectTimer > 0) return false;
 
         ammoCount--;
-        effectTimer = effectTimerLimit;       
+        effectTimer = effectTimerLimit;
+        if (ammoCount <= 0)
+        {
+            isDisabled = true;
+            disabledEvent.Invoke();
+        }       
         return true;
     }
 
     public override void Update(float deltaTime)
     {
         base.Update(deltaTime);
-        if (ammoCount > 0) return;
+        if (isDisabled==false) return;
+        if (isReadyToRecyle == true) return;
+        offlineTowerTimer -= deltaTime;
+        if (offlineTowerTimer < 0)
+        {
+            isReadyToRecyle = true;
+            recyleEvent.Invoke();
+        }
 
     }
 

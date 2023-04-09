@@ -14,6 +14,8 @@ public class TowerScript : MonoBehaviour
     private GameObject rockPrefab;
     [SerializeField]
     private Transform visual;
+    [SerializeField]
+    private Animator animator;
 
     [SerializeField]
     private AudioClip shotSound;
@@ -30,23 +32,35 @@ public class TowerScript : MonoBehaviour
         switch (selectedTowerTypes)
         {
             case TowerTypes.Wind:
-            towerType = new TowerWind(3f, isTop);
+            towerType = new TowerWind(3f, isTop,5f);
             break;
             case TowerTypes.Stun:
-            towerType = new TowerStun(3f, isTop);
+            towerType = new TowerStun(3f, isTop,3f);
             break;
             default:
             break;
         }
+        towerType.disabledEvent.AddListener(OnTowerDisable);
+
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = shotSound;
     }
 
+    private void OnDestroy()
+    {
+        towerType?.disabledEvent.RemoveListener(OnTowerDisable);
+    }
 
-    
+    private void OnTowerDisable()
+    {
+        audioSource.Stop();       
+        animator.SetBool("Disabled",true);//TODO
+    }
+
+
     void Update()
     {
-        towerType.Update(Time.deltaTime);
+        towerType.Update(Time.deltaTime);        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

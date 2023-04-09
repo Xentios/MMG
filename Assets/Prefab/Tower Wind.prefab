@@ -183,6 +183,7 @@ MonoBehaviour:
   selectedTowerTypes: 0
   rockPrefab: {fileID: 4085236999656355576, guid: afbfd566b07341f459d016ba19aad04d, type: 3}
   visual: {fileID: 1537388666515101937}
+  animator: {fileID: 1290960758}
   shotSound: {fileID: 8300000, guid: 0e1dddc4bca66c24dbe9e0b84c86ba85, type: 3}
 --- !u!82 &1537388666966711563
 AudioSource:

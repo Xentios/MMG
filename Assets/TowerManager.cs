@@ -16,15 +16,26 @@ public class TowerManager : MonoBehaviour
         {
             instance = this;
         }
+
+        towers = new List<TowerScript>();
     }
+
     [SerializeField]
     GameObject[] towerPrefabs;
 
     [SerializeField]
     GameObject[] UITowers;
     
+    static List<TowerScript> towers;
 
-   
+    public void OnDestroy()
+    {
+        foreach (var tower in towers)
+        {
+           // tower.recyleEvent.RemoveListener(RecyleTower);
+        }
+    }
+
     public static void CreateTower(GameObject towerSlot,GameObject towerPrefab)
     {
         
@@ -43,11 +54,18 @@ public class TowerManager : MonoBehaviour
             break;
             default:
             break;
-        }
-        //var offset_y = towerInfo.selectedTowerTypes == TowerScript.TowerTypes.Wind ? 0.7f : 0f;
-        //var rotation= towerSlotInfo.isTop==false?Quaternion.identity:Quaternion.Euler(0, 0, 180);
+        }      
         var pos = new Vector3(towerSlot.transform.position.x, towerSlot.transform.position.y+ offset_y, 0);
-        Instantiate(towerPrefab, pos, rotation);       
+        var newTower=Instantiate(towerPrefab, pos, rotation).GetComponent<TowerScript>();
+        //newTower.recyleEvent.AddListener(RecyleTower);
+        towers.Add(newTower);
+
+
+    }
+
+    public static void RecyleTower()
+    {
+
     }
 
     private void Update()
