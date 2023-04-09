@@ -6,9 +6,11 @@ public class TowerStun : Tower
 {
     private int ammoCount=2;
 
-    public TowerStun(float timeLimit, bool isTop, float offTimeLimit) : base(timeLimit, isTop, offTimeLimit)
+    public TowerStun(float timeLimit, bool isTop, float offTimeLimit,float recTime ) : base(timeLimit, isTop, offTimeLimit,recTime)
     {
     }
+
+
 
     public override bool HandleZomWick(Collider2D collision)
     {
