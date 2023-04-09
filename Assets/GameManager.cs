@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameTimerInSeconds < 0) return;
         gameTimerInSeconds -= Time.deltaTime;
-        gameTimerText.text = " : " + (int) gameTimerInSeconds + "";
+        gameTimerText.text = "Survive For: " + (int) gameTimerInSeconds + "";
         if (gameTimerInSeconds < 0)
         {
             audioSource.clip = winSound;
