@@ -58,7 +58,7 @@ public class TowerManager : MonoBehaviour
             offset_y = 0.7f;
             break;
             case TowerScript.TowerTypes.Stun:
-            index = 1;
+            index = 2;
             //rotation = towerSlotInfo.isTop == false ? Quaternion.identity : Quaternion.Euler(0, 0, 180);
             break;
             default:
