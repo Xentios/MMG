@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
         {
             zomWick.GetComponent<EnemyMovement>().isStunned = true;
             zomWick.GetComponent<EnemyMovement>().stunTimer = 10f;
+            music.volume = 0f;
             audioSource.clip = winSound;
             audioSource.Play();
             StartCoroutine(WinGameEffect());
@@ -58,7 +59,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over");
         audioSource.clip = loseSound;
         audioSource.Play();
-        music.volume = 0.5f;
+        music.volume = 0f;
         StartCoroutine(EndGameEffect());
     }
 

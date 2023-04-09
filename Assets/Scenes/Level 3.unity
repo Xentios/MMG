@@ -17427,7 +17427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ae19781096b3241b33427ad86a3cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTimerInSeconds: 11
+  gameTimerInSeconds: 100
   gameTimerText: {fileID: 1511449026}
   zomWick: {fileID: 1671779953}
   winSound: {fileID: 8300000, guid: a953129e8f599444fbd07b383b9b4b1e, type: 3}
