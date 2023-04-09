@@ -46,8 +46,9 @@ public class TowerUIScript : MonoBehaviour, IPointerEnterHandler,IPointerDownHan
         else
         {
             
-            TowerManager.CreateTower(hit.collider.gameObject, myPrefab);
-            transform.gameObject.SetActive(false);//TODO may need reset of fields 
+            TowerManager.instance.CreateTower(hit.collider.gameObject, myPrefab);
+            //transform.gameObject.SetActive(false);//TODO may need reset of fields 
+            GameObject.Destroy(transform.gameObject);
 
         }
     }

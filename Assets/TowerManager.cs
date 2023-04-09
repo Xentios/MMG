@@ -21,22 +21,25 @@ public class TowerManager : MonoBehaviour
     }
 
     [SerializeField]
+    GameObject towerUIHolder;
+
+    [SerializeField]
     GameObject[] towerPrefabs;
 
     [SerializeField]
     GameObject[] UITowers;
     
-    static List<TowerScript> towers;
+    List<TowerScript> towers;
 
     public void OnDestroy()
     {
         foreach (var tower in towers)
         {
-           // tower.recyleEvent.RemoveListener(RecyleTower);
+           tower.towerType.recyleEvent.RemoveListener(RecyleTower);
         }
     }
 
-    public static void CreateTower(GameObject towerSlot,GameObject towerPrefab)
+    public void CreateTower(GameObject towerSlot,GameObject towerPrefab)
     {
         
         var towerSlotInfo = towerSlot.GetComponent<TowerSlot>();
@@ -57,15 +60,37 @@ public class TowerManager : MonoBehaviour
         }      
         var pos = new Vector3(towerSlot.transform.position.x, towerSlot.transform.position.y+ offset_y, 0);
         var newTower=Instantiate(towerPrefab, pos, rotation).GetComponent<TowerScript>();
-        //newTower.recyleEvent.AddListener(RecyleTower);
+        newTower.towerType.recyleEvent.AddListener(RecyleTower);
         towers.Add(newTower);
 
 
     }
 
-    public static void RecyleTower()
-    {
 
+    //Debug.Log("Remove Tower and Add back to UI");
+    public  void RecyleTower(Tower t)
+    {
+        TowerScript towerToRemove=null;
+        foreach (var tower in towers)
+        {
+            if (tower.towerType == t)
+            {
+                
+                towerToRemove = tower;
+                break;
+               
+            }
+        }
+
+        if (towerToRemove != null)
+        {
+            towers.Remove(towerToRemove);
+            int index = (int) towerToRemove.selectedTowerTypes;            
+            GameObject.Destroy(towerToRemove.gameObject);
+            Instantiate(UITowers[index], towerUIHolder.transform);
+
+        }
+       
     }
 
     private void Update()

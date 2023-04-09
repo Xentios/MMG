@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TowerScript : MonoBehaviour
 {
-    private Tower towerType;
+    public Tower towerType;
 
     [SerializeField]
     public bool isTop;
@@ -55,22 +55,44 @@ public class TowerScript : MonoBehaviour
     {
         audioSource.Stop();       
         animator.SetBool("Disabled",true);//TODO
+        StartCoroutine(ScaleOverTime());
+    }
+
+    
+    
+    private IEnumerator ScaleOverTime()
+    {
+        float duration= towerType.recyleTimer/2;
+        float elapsedTime = 0;
+        float startScale = 1f;
+        float endScale = 0.5f;
+
+        yield return new WaitForSeconds(towerType.recyleTimer / 2);
+        while (elapsedTime < duration)
+        {           
+            float currentScale = Mathf.Lerp(startScale, endScale, elapsedTime / duration);           
+            transform.localScale = new Vector3(currentScale, currentScale, currentScale);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+                
+        transform.localScale = new Vector3(endScale, endScale, endScale);
     }
 
 
     void Update()
-    {
-        towerType.Update(Time.deltaTime);        
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("ZomWick")){
-            if (towerType.HandleZomWick(collision))
-            {
-                Instantiate(rockPrefab, transform.position, Quaternion.identity);
-                audioSource.Play();
-            }            
+        {
+            towerType.Update(Time.deltaTime);        
         }
-    }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if(collision.CompareTag("ZomWick")){
+                if (towerType.HandleZomWick(collision))
+                {
+                    Instantiate(rockPrefab, transform.position, Quaternion.identity);
+                    audioSource.Play();
+                }            
+            }
+        }
 }

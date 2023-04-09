@@ -962,11 +962,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26e44d8827d38d4fbd03a1de5cd1fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerUIHolder: {fileID: 676241573}
   towerPrefabs:
   - {fileID: 1537388666966711671, guid: 02463ca5817bb4a48ad3f6a59634f51f, type: 3}
   - {fileID: 1703515676445134838, guid: 474f68f43b49cfc44bb015b79a35d118, type: 3}
   UITowers:
-  - {fileID: 1156157038}
+  - {fileID: 6036822091563695679, guid: c1797e99c9a895343b069f483163358f, type: 3}
+  - {fileID: 6036822091563695679, guid: f753df4e1b29cf74db38a4ef71d33753, type: 3}
 --- !u!4 &165316045
 Transform:
   m_ObjectHideFlags: 0
@@ -6400,11 +6402,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8477490053763885914, guid: fa8276821620bde4285059b55a0a7b2b, type: 3}
   m_PrefabInstance: {fileID: 1153406923}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1156157038 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6036822091563695679, guid: f753df4e1b29cf74db38a4ef71d33753, type: 3}
-  m_PrefabInstance: {fileID: 6036822092690485329}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &1156157039 stripped
 RectTransform:

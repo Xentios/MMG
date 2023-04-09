@@ -34,7 +34,7 @@ public class TowerStun : Tower
         if (offlineTowerTimer < 0)
         {
             isReadyToRecyle = true;
-            recyleEvent.Invoke();
+            recyleEvent.Invoke(this);
         }
 
     }

@@ -35,7 +35,16 @@ public class TowerWind : Tower
             isDisabled = true;
             disabledEvent.Invoke();
         }
-       
+        if (recyleTimer>0 && isDisabled && isReadyToRecyle==false)
+        {
+            recyleTimer -= deltaTime;
+            if (recyleTimer <= 0)
+            {
+                isReadyToRecyle = true;
+                recyleEvent.Invoke(this);
+            }
+            
+        }
 
     }
 }
