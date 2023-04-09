@@ -18,6 +18,8 @@ public class SimpleCharacterController : MonoBehaviour
     private float shootTimerLimit = 10;
     public float shootTimer;
 
+    [SerializeField]
+    private Animator animator;
     void Start()
     {
        // shootTimer = shootTimerLimit;
@@ -49,6 +51,7 @@ public class SimpleCharacterController : MonoBehaviour
         if (shootTimer > 0) return;
         Instantiate(Bullet,transform.position,Quaternion.identity);
         shootTimer = shootTimerLimit;
+        animator.Play("Shoot");
     }
 
     private void MoveUp()
