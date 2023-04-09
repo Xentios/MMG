@@ -47,8 +47,8 @@ public class EnemyMovement : MonoBehaviour
     private float speedModifier = 0.01f;
 
     private  float stunTimerSet = 1f;
-    private float stunTimer;
-    private bool isStunned;
+    public float stunTimer;
+    public bool isStunned;
 
     private float actionTimerReset = 5f;
     private float actionTimer;

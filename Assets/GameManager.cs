@@ -25,9 +25,16 @@ public class GameManager : MonoBehaviour
     private AudioSource audioSource;
 
     public Volume Volume;
+
+    private AudioSource music;
+
+    private Volume winVolume;
     void Start()
     {
-
+        var musicObject=GameObject.Find("Music");
+        music = musicObject.GetComponent<AudioSource>();
+        var winVolumeObject = GameObject.Find("GameWin Volume");
+        winVolume = winVolumeObject.GetComponent<Volume>();
     }
 
 
@@ -38,6 +45,8 @@ public class GameManager : MonoBehaviour
         gameTimerText.text = "" + (int) gameTimerInSeconds;
         if (gameTimerInSeconds < 0)
         {
+            zomWick.GetComponent<EnemyMovement>().isStunned = true;
+            zomWick.GetComponent<EnemyMovement>().stunTimer = 10f;
             audioSource.clip = winSound;
             audioSource.Play();
             StartCoroutine(WinGameEffect());
@@ -49,6 +58,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over");
         audioSource.clip = loseSound;
         audioSource.Play();
+        music.volume = 0.5f;
         StartCoroutine(EndGameEffect());
     }
 
@@ -62,15 +72,23 @@ public class GameManager : MonoBehaviour
             Volume.weight = elapsedTime;
             yield return null;
         }
-
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(3f);
         Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.buildIndex + 1);
+        SceneManager.LoadScene(scene.buildIndex);
     }
 
     IEnumerator WinGameEffect()
     {
-        yield return new WaitForSeconds(7f);
+       
+        float duration = 2f;
+        float elapsedTime = 0;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            winVolume.weight = elapsedTime/2;
+            yield return null;
+        }
+        yield return new WaitForSeconds(3f);
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene((scene.buildIndex + 1)%4);
     }
