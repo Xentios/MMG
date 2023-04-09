@@ -204,12 +204,12 @@ public class EnemyMovement : MonoBehaviour
 
 
 
-    private void OnGUI()
-    {
-        if (GUI.Button(new Rect(10, 70, 150, 130), "Push Up"))
-            Push(Vector2.up);
+    //private void OnGUI()
+    //{
+    //    if (GUI.Button(new Rect(10, 70, 150, 130), "Push Up"))
+    //        Push(Vector2.up);
 
-        if (GUI.Button(new Rect(200, 70, 150, 130), "Push Down"))
-            Push(Vector2.down);
-    }
+    //    if (GUI.Button(new Rect(200, 70, 150, 130), "Push Down"))
+    //        Push(Vector2.down);
+    //}
 }

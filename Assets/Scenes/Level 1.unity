@@ -4648,7 +4648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ae19781096b3241b33427ad86a3cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTimerInSeconds: 200
+  gameTimerInSeconds: 100
   gameTimerText: {fileID: 495526883}
   zomWick: {fileID: 378506238}
   winSound: {fileID: 8300000, guid: a953129e8f599444fbd07b383b9b4b1e, type: 3}
@@ -19302,6 +19302,54 @@ PrefabInstance:
     - target: {fileID: 7936548617495593491, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
       propertyPath: m_Name
       value: Zom Wick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936548617795177893, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c5078b41307d13d40bf53b2cecac7b5b, type: 3}
+    - target: {fileID: 7936548617795177893, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
+      propertyPath: m_Color.b
+      value: 0.28627452
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936548617795177893, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
+      propertyPath: m_Color.g
+      value: 0.28627452
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936548617795177893, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936548617795177893, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936548617795177898, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936548617795177898, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936548617795177898, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936548617795177898, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936548617795177898, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936548617795177898, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936548617795177899, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
