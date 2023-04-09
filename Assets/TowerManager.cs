@@ -18,6 +18,7 @@ public class TowerManager : MonoBehaviour
         }
 
         towers = new List<TowerScript>();
+        towerSlotPair = new Dictionary<TowerScript, TowerSlot>();
     }
 
     [SerializeField]
@@ -30,6 +31,8 @@ public class TowerManager : MonoBehaviour
     GameObject[] UITowers;
     
     List<TowerScript> towers;
+
+    private Dictionary<TowerScript,TowerSlot> towerSlotPair;
 
     public void OnDestroy()
     {
@@ -62,7 +65,7 @@ public class TowerManager : MonoBehaviour
         var newTower=Instantiate(towerPrefab, pos, rotation).GetComponent<TowerScript>();
         newTower.towerType.recyleEvent.AddListener(RecyleTower);
         towers.Add(newTower);
-
+        towerSlotPair.Add(newTower, towerSlotInfo);
 
     }
 
@@ -84,6 +87,10 @@ public class TowerManager : MonoBehaviour
 
         if (towerToRemove != null)
         {
+            towerSlotPair.TryGetValue(towerToRemove, out TowerSlot towerSlotToFree);
+            {
+                towerSlotToFree.isOccupied = false;
+            }
             towers.Remove(towerToRemove);
             int index = (int) towerToRemove.selectedTowerTypes;            
             GameObject.Destroy(towerToRemove.gameObject);
