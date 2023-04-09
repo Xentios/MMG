@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class SimpleCharacterController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private EnemyMovement.Lane myLane;
+
     [SerializeField]
     GameObject Bullet;
 
     [SerializeField]
     private float moveSpeed=1;
+
     [SerializeField]
     private float shootTimerLimit = 10;
     private float shootTimer;
@@ -26,15 +29,11 @@ public class SimpleCharacterController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Debug.Log("Go Up");
-            var y = transform.position.y + (moveSpeed * 1);
-            transform.position = new Vector3(transform.position.x, y, transform.position.z);
+            MoveUp();
         }
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            Debug.Log("Go Down");
-            var y = transform.position.y + (moveSpeed * -1);
-            transform.position = new Vector3(transform.position.x, y, transform.position.z);
+            MoveDown();
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -49,5 +48,23 @@ public class SimpleCharacterController : MonoBehaviour
         if (shootTimer > 0) return;
         Instantiate(Bullet,transform.position,Quaternion.identity);
         shootTimer = shootTimerLimit;
+    }
+
+    private void MoveUp()
+    {
+        if (myLane == EnemyMovement.Lane.Top) return;
+        myLane++;
+        Debug.Log("Go Up");
+        var y = transform.position.y + (moveSpeed * 1);
+        transform.position = new Vector3(transform.position.x, y, transform.position.z);
+    }
+
+    private void MoveDown()
+    {
+        if (myLane == EnemyMovement.Lane.Bottom) return;
+        myLane--;
+        Debug.Log("Go Down");
+        var y = transform.position.y + (moveSpeed * -1);
+        transform.position = new Vector3(transform.position.x, y, transform.position.z);
     }
 }

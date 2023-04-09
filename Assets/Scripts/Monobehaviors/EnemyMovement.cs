@@ -6,7 +6,20 @@ using Random = UnityEngine.Random;
 
 public class EnemyMovement : MonoBehaviour
 {
+    public enum Lane
+    {
+        Bottom,
+        NearBottom,       
+        Middle,        
+        NearTop,
+        Top,
+    }
+    [SerializeField]
+    private Lane myLane;
+
     public TerrainFeatures.TerrainType terrainType;
+
+ 
 
     [SerializeField]
     LayerMask groundLayerMask;
@@ -132,6 +145,20 @@ public class EnemyMovement : MonoBehaviour
   
     public void Push( Vector2 pushForce)
     {
+        switch (pushForce.y)
+        {
+            case < 0:
+            if (myLane == Lane.Bottom) return;
+            myLane--;
+            break;
+            case > 0:
+            if (myLane == Lane.Top) return;
+            myLane++;
+            break;
+            default:
+            break;
+        }
+
         rb2D.AddForce(pushForce * 100, ForceMode2D.Force);        
     }
 
