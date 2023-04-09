@@ -72,6 +72,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(7f);
         Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.buildIndex + 1);
+        SceneManager.LoadScene((scene.buildIndex + 1)%4);
     }
 }

@@ -21,4 +21,8 @@ public class MenuController : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+    public void Scenetransition(float index)
+    {
+        SceneManager.LoadScene((int) index);
+    }
 }
