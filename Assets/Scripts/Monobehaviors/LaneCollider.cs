@@ -12,8 +12,8 @@ public class LaneCollider : MonoBehaviour
         if (collision.CompareTag("ZomWick")) {
             var rb2D=collision.gameObject.GetComponent<Rigidbody2D>();
             rb2D.velocity = new Vector2(rb2D.velocity.x, 0f);
-            var ZomWick = collision.gameObject.GetComponent<EnemyMovement>();
-            ZomWick.CheckNewTerrain();
+            //var ZomWick = collision.gameObject.GetComponent<EnemyMovement>();
+            //ZomWick.CheckNewTerrain();
         }
     }
 

@@ -50,8 +50,8 @@ public class EnemyMovement : MonoBehaviour
     private float stunTimer;
     private bool isStunned;
 
-    private float moveTimerReset = 5f;
-    private float moveTimer;
+    private float actionTimerReset = 5f;
+    private float actionTimer;
 
     private void Awake()
     {
@@ -62,8 +62,8 @@ public class EnemyMovement : MonoBehaviour
     {
         pushResistTimer = pushResistTimerSet;
         stunTimer = stunTimerSet;
-        moveTimer = moveTimerReset;
-        CheckNewTerrain();        
+        actionTimer = actionTimerReset;        
+        StartCoroutine(CheckNewTerrainEvery1Second());
     }
 
     public void Stun()
@@ -95,10 +95,10 @@ public class EnemyMovement : MonoBehaviour
 
         if (rb2D.velocity.y == 0)
         {
-            moveTimer -= Time.deltaTime;
-            if (moveTimer < 0)
+            actionTimer -= Time.deltaTime;
+            if (actionTimer < 0)
             {
-                moveTimer = moveTimerReset;
+                actionTimer = actionTimerReset;
                 ChooseAction();
             }
         }
@@ -183,17 +183,26 @@ public class EnemyMovement : MonoBehaviour
 
     public void CheckNewTerrain()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down,1f, groundLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down,0.1f, groundLayerMask);
         if (hit.collider != null)
         {
+            
             terrainType = hit.collider.GetComponent<GroundScript>().terrainType;
+            Debug.Log(terrainType);
             walkAudioSource.clip = walkClips[(int) terrainType];
             walkAudioSource.Play();
         }
-          
-       
     }
- 
+    IEnumerator CheckNewTerrainEvery1Second()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            CheckNewTerrain();
+        }
+    }
+
+
 
     private void OnGUI()
     {
