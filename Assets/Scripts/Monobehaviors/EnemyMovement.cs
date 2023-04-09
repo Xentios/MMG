@@ -142,7 +142,7 @@ public class EnemyMovement : MonoBehaviour
         {
             rb2D.AddForce(Vector2.left * speedModifier, ForceMode2D.Impulse);
         }
-        animator.SetFloat("VelocityX", rb2D.velocity.x);
+        animator.SetFloat("VelocityX", rb2D.velocity.x*-1);
 
 
     }
