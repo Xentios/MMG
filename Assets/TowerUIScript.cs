@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TowerUIScript : MonoBehaviour, IPointerEnterHandler,IPointerDownHandler,IPointerExitHandler,IPointerMoveHandler,IPointerUpHandler
+public class TowerUIScript : MonoBehaviour, IPointerEnterHandler,IPointerDownHandler,IPointerExitHandler,IPointerMoveHandler,IPointerUpHandler,IDragHandler
 {
 
     [SerializeField]
@@ -19,10 +19,13 @@ public class TowerUIScript : MonoBehaviour, IPointerEnterHandler,IPointerDownHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (eventData.dragging) return;
+        
         transform.localScale = Vector3.one * 1.3f;
     }
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (eventData.dragging) return;
         transform.localScale = Vector3.one;
        
     }
@@ -30,8 +33,7 @@ public class TowerUIScript : MonoBehaviour, IPointerEnterHandler,IPointerDownHan
     public void OnPointerDown(PointerEventData eventData)
     {
         isDragging = true;
-        layoutElement.ignoreLayout = true;
-       
+        layoutElement.ignoreLayout = true;       
     }
     public void OnPointerUp(PointerEventData eventData)
     {
@@ -41,7 +43,9 @@ public class TowerUIScript : MonoBehaviour, IPointerEnterHandler,IPointerDownHan
         if (hit.collider == null || hit.collider.GetComponent<TowerSlot>().isOccupied)
         {
             isDragging = false;
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             layoutElement.ignoreLayout = false;
+           
         }
         else
         {
@@ -54,16 +58,19 @@ public class TowerUIScript : MonoBehaviour, IPointerEnterHandler,IPointerDownHan
     }
        
 
-    public void OnPointerMove(PointerEventData eventData)
-    {
-        
-        if (isDragging)
-        {           
-            layoutElement.ignoreLayout = true;
-            transform.position = Input.mousePosition;          
-        }
-    }
-  
+    //public void OnPointerMove(PointerEventData eventData)
+    //{
+    //    return;//TODO
+    //    if (isDragging)
+    //    {        
+    //        layoutElement.ignoreLayout = true;
+    //        transform.position = eventData.position;     
+    //    }
+    //}
 
-    
+    public void OnDrag(PointerEventData eventData)
+    {
+        layoutElement.ignoreLayout = true;
+        transform.position = eventData.position;
+    }
 }
