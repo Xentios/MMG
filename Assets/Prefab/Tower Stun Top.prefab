@@ -61,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1703515676445134838, guid: 474f68f43b49cfc44bb015b79a35d118, type: 3}
       propertyPath: m_Name
-      value: Tower Stun Arka
+      value: Tower Stun Top
       objectReference: {fileID: 0}
     - target: {fileID: 4096347615093119777, guid: 474f68f43b49cfc44bb015b79a35d118, type: 3}
       propertyPath: m_Controller
