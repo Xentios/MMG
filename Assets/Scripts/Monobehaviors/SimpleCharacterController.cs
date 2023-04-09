@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SimpleCharacterController : MonoBehaviour
 {
+    
     [SerializeField]
     private EnemyMovement.Lane myLane;
 
@@ -15,7 +16,7 @@ public class SimpleCharacterController : MonoBehaviour
 
     [SerializeField]
     private float shootTimerLimit = 10;
-    private float shootTimer;
+    public float shootTimer;
 
     void Start()
     {
