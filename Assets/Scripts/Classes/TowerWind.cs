@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class TowerWind : Tower
 {
-    
-    public TowerWind(float timeLimit, bool isTop, float offTimeLimit) : base(timeLimit, isTop, offTimeLimit)
+    public TowerWind(float timeLimit, bool isTop, float offTimeLimit, float recTime) : base(timeLimit, isTop, offTimeLimit, recTime)
     {
     }
+
 
     public override bool HandleZomWick(Collider2D collision)
     {

@@ -21,9 +21,11 @@ public abstract class Tower
 
     public UnityEvent disabledEvent;
     public UnityEvent<Tower> recyleEvent;
+    private float timeLimit;
+    private bool isTop;
+    private float offTimeLimit;
 
-
-    public Tower(float timeLimit, bool isTop, float offTimeLimit)
+    public Tower(float timeLimit, bool isTop, float offTimeLimit,float recTime)
     {
         offlineTowerTimerLimit = offTimeLimit;
         effectTimerLimit = timeLimit;
@@ -31,9 +33,16 @@ public abstract class Tower
         isTopSide = isTop;
         disabledEvent = new UnityEvent();
         recyleEvent = new UnityEvent<Tower>();
-        recyleTimer = 3f;
+        recyleTimer = recTime;
     }
-      
+
+    protected Tower(float timeLimit, bool isTop, float offTimeLimit)
+    {
+        this.timeLimit = timeLimit;
+        this.isTop = isTop;
+        this.offTimeLimit = offTimeLimit;
+    }
+
     public abstract bool HandleZomWick(Collider2D collision);
 
 

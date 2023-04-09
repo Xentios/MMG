@@ -32,10 +32,10 @@ public class TowerScript : MonoBehaviour
         switch (selectedTowerTypes)
         {
             case TowerTypes.Wind:
-            towerType = new TowerWind(3f, isTop,5f);
+            towerType = new TowerWind(3f, isTop,5f,3f);
             break;
             case TowerTypes.Stun:
-            towerType = new TowerStun(3f, isTop,3f);
+            towerType = new TowerStun(3f, isTop,6f,6f);
             break;
             default:
             break;
@@ -54,7 +54,7 @@ public class TowerScript : MonoBehaviour
     private void OnTowerDisable()
     {
         audioSource.Stop();       
-        animator.SetBool("Disabled",true);//TODO
+        animator.SetBool("Disabled",true);
         StartCoroutine(ScaleOverTime());
     }
 
@@ -92,6 +92,8 @@ public class TowerScript : MonoBehaviour
                 {
                     Instantiate(rockPrefab, transform.position, Quaternion.identity);
                     animator.SetTrigger("Hit");
+                    //var x = (TowerStun) towerType;
+                    //animator.SetInteger("Ammo", x.ammoCount);
                     audioSource.Play();
                 }            
             }
