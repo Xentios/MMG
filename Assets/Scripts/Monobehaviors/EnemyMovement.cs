@@ -25,6 +25,8 @@ public class EnemyMovement : MonoBehaviour
     LayerMask groundLayerMask;
     [SerializeField]
     GameObject WarningSign;
+    [SerializeField]
+    Animator animator;
 
     Rigidbody2D rb2D;
 
@@ -61,6 +63,7 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (rb2D.velocity.x > 0)
         {
             pushResistTimer -= Time.deltaTime;
@@ -139,7 +142,9 @@ public class EnemyMovement : MonoBehaviour
         {
             rb2D.AddForce(Vector2.left * speedModifier, ForceMode2D.Impulse);
         }
-        
+        animator.SetFloat("VelocityX", rb2D.velocity.x);
+
+
     }
 
   

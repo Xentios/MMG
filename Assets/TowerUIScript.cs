@@ -48,29 +48,26 @@ public class TowerUIScript : MonoBehaviour, IPointerEnterHandler,IPointerDownHan
            
         }
         else
-        {
-            
-            TowerManager.instance.CreateTower(hit.collider.gameObject, myPrefab);
-            //transform.gameObject.SetActive(false);//TODO may need reset of fields 
+        {   
+            TowerManager.instance.CreateTower(hit.collider.gameObject, myPrefab);           
             GameObject.Destroy(transform.gameObject);
-
         }
     }
-       
 
-    //public void OnPointerMove(PointerEventData eventData)
-    //{
-    //    return;//TODO
-    //    if (isDragging)
-    //    {        
-    //        layoutElement.ignoreLayout = true;
-    //        transform.position = eventData.position;     
-    //    }
-    //}
+
+    public void OnPointerMove(PointerEventData eventData)
+    {
+        //return;//TODO
+        //if (isDragging)
+        //{
+        //    layoutElement.ignoreLayout = true;
+        //    transform.position = eventData.position;
+        //}
+    }
 
     public void OnDrag(PointerEventData eventData)
     {
         layoutElement.ignoreLayout = true;
-        transform.position = eventData.position;
+        transform.position = new Vector3(eventData.position.x, eventData.position.y, -3);
     }
 }

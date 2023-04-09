@@ -91,6 +91,7 @@ public class TowerScript : MonoBehaviour
                 if (towerType.HandleZomWick(collision))
                 {
                     Instantiate(rockPrefab, transform.position, Quaternion.identity);
+                    animator.SetTrigger("Hit");
                     audioSource.Play();
                 }            
             }
