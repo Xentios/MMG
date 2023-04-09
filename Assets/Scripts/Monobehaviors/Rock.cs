@@ -20,21 +20,20 @@ public class Rock : MonoBehaviour
     void Start()
     {
         way =Mathf.Sign( -1 - transform.position.y);
-        randomStopRange = Random.Range(0, -3*way);
+        randomStopRange = -1f;
+        randomStopRange += Random.Range(-0.5f, 0.5f);       
         randomSpeedModifier = Random.Range(1, 1f);
     }
 
-    // Update is called once per frame
+    
     void Update()
     {       
         if (isDisabled) return;       
-        transform.position =new Vector2(transform.position.x, transform.position.y+ way*randomSpeedModifier *speed* Time.deltaTime);
-        //if (transform.position.y < randomStopRange) isDisabled = true;
-    }
-
-    private void FixedUpdate()
-    {
-        //GetComponent<Rigidbody2D>().AddForce(Vector2.up/1000f, ForceMode2D.Force);
+        transform.position =new Vector2(transform.position.x, transform.position.y+ way*randomSpeedModifier *speed* Time.deltaTime);       
+       if( ((way==1) &&transform.position.y> randomStopRange ) ||( way==-1 && transform.position.y < randomStopRange))
+        {
+            StopInAir();
+        }
     }
 
 
@@ -51,6 +50,15 @@ public class Rock : MonoBehaviour
         GetComponent<CircleCollider2D>().enabled = false;
 
         StartCoroutine(StopInTime());   
+    }
+
+    private void StopInAir()
+    {
+        var rb2D = GetComponent<Rigidbody2D>();
+        isDisabled = true;
+        GetComponent<CircleCollider2D>().enabled = false;
+        animator.SetTrigger("Hit");
+        rb2D.velocity = Vector2.zero;
     }
 
     IEnumerator StopInTime()

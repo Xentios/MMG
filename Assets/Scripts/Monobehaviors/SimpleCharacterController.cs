@@ -38,7 +38,7 @@ public class SimpleCharacterController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Shoot");
+           // Debug.Log("Shoot");
             Shoot();
         }
 
@@ -55,7 +55,7 @@ public class SimpleCharacterController : MonoBehaviour
     {
         if (myLane == EnemyMovement.Lane.Top) return;
         myLane++;
-        Debug.Log("Go Up");
+        //Debug.Log("Go Up");
         var y = transform.position.y + (moveSpeed * 1);
         transform.position = new Vector3(transform.position.x, y, transform.position.z);
     }
@@ -64,7 +64,7 @@ public class SimpleCharacterController : MonoBehaviour
     {
         if (myLane == EnemyMovement.Lane.Bottom) return;
         myLane--;
-        Debug.Log("Go Down");
+       // Debug.Log("Go Down");
         var y = transform.position.y + (moveSpeed * -1);
         transform.position = new Vector3(transform.position.x, y, transform.position.z);
     }
