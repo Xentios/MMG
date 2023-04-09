@@ -51,7 +51,7 @@ public class SimpleCharacterController : MonoBehaviour
         if (shootTimer > 0) return;
         Instantiate(Bullet,transform.position,Quaternion.identity);
         shootTimer = shootTimerLimit;
-        animator.Play("Shoot");
+        animator.SetTrigger("Shoot");
     }
 
     private void MoveUp()
