@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Rendering;
-
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         {
             audioSource.clip = winSound;
             audioSource.Play();
-            Debug.Log("YOU WIN THE GAME");
+            StartCoroutine(WinGameEffect());
         }
     }
 
@@ -59,8 +59,19 @@ public class GameManager : MonoBehaviour
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            Volume.weight = elapsedTime;           
+            Volume.weight = elapsedTime;
             yield return null;
         }
+
+        yield return new WaitForSeconds(7f);
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.buildIndex + 1);
+    }
+
+    IEnumerator WinGameEffect()
+    {
+        yield return new WaitForSeconds(7f);
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.buildIndex + 1);
     }
 }
