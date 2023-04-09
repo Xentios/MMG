@@ -1182,6 +1182,8 @@ MonoBehaviour:
   towerUIHolder: {fileID: 676241573}
   towerPrefabs:
   - {fileID: 1537388666966711671, guid: 02463ca5817bb4a48ad3f6a59634f51f, type: 3}
+  - {fileID: 4694233309132899314, guid: 1cd7fe18f7e39064a8bc7f30c7edad83, type: 3}
+  - {fileID: 7967340686619507798, guid: 7695377f902553d4cab8852d0fda8d7c, type: 3}
   - {fileID: 1703515676445134838, guid: 474f68f43b49cfc44bb015b79a35d118, type: 3}
   UITowers:
   - {fileID: 6036822091563695679, guid: c1797e99c9a895343b069f483163358f, type: 3}

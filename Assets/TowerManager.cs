@@ -50,19 +50,22 @@ public class TowerManager : MonoBehaviour
         var towerInfo = towerPrefab.GetComponent<TowerScript>();
         var offset_y=0f;
         var rotation=Quaternion.identity;
+        var index_offset=towerSlotInfo.isTop?0:1;
+        var index = 0;
         switch (towerInfo.selectedTowerTypes)
         {
             case TowerScript.TowerTypes.Wind:
             offset_y = 0.7f;
             break;
             case TowerScript.TowerTypes.Stun:
-            rotation = towerSlotInfo.isTop == false ? Quaternion.identity : Quaternion.Euler(0, 0, 180);
+            index = 1;
+            //rotation = towerSlotInfo.isTop == false ? Quaternion.identity : Quaternion.Euler(0, 0, 180);
             break;
             default:
             break;
         }      
         var pos = new Vector3(towerSlot.transform.position.x, towerSlot.transform.position.y+ offset_y, 0);
-        var newTower=Instantiate(towerPrefab, pos, rotation).GetComponent<TowerScript>();
+        var newTower=Instantiate(towerPrefabs[index+index_offset], pos, rotation).GetComponent<TowerScript>();
         newTower.towerType.recyleEvent.AddListener(RecyleTower);
         towers.Add(newTower);
         towerSlotPair.Add(newTower, towerSlotInfo);
