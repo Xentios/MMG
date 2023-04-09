@@ -750,11 +750,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: 2DURP
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: C:\UnityOnlineProjects\MMG\Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 005816b0f889da01
   metroApplicationDescription: 2D_URP
   wsaImages: {}
   metroTileShortName: MMG
