@@ -278,11 +278,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1537388666966711670, guid: 02463ca5817bb4a48ad3f6a59634f51f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: 1.85
       objectReference: {fileID: 0}
     - target: {fileID: 1537388666966711670, guid: 02463ca5817bb4a48ad3f6a59634f51f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 1537388666966711670, guid: 02463ca5817bb4a48ad3f6a59634f51f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -319,10 +319,6 @@ PrefabInstance:
     - target: {fileID: 1537388666966711671, guid: 02463ca5817bb4a48ad3f6a59634f51f, type: 3}
       propertyPath: m_Name
       value: Tower Wind
-      objectReference: {fileID: 0}
-    - target: {fileID: 1537388666966711671, guid: 02463ca5817bb4a48ad3f6a59634f51f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02463ca5817bb4a48ad3f6a59634f51f, type: 3}
@@ -464,10 +460,6 @@ PrefabInstance:
     - target: {fileID: 1703515676445134838, guid: 474f68f43b49cfc44bb015b79a35d118, type: 3}
       propertyPath: m_Name
       value: Tower Stun
-      objectReference: {fileID: 0}
-    - target: {fileID: 1703515676445134838, guid: 474f68f43b49cfc44bb015b79a35d118, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 474f68f43b49cfc44bb015b79a35d118, type: 3}
