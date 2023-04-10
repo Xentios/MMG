@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            SceneManager.LoadScene(0);
+        }
         if (gameTimerInSeconds < 0) return;
         gameTimerInSeconds -= Time.deltaTime;
         gameTimerText.text = "" + (int) gameTimerInSeconds;

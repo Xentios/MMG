@@ -25,4 +25,21 @@ public class MenuController : MonoBehaviour
     {
         SceneManager.LoadScene((int) index);
     }
+
+    public void ExitGame()
+    {
+
+
+
+       
+
+    #if UNITY_WEBGL
+            if (Screen.fullScreen) Screen.fullScreen = false;
+    #else
+            Application.Quit();
+    #endif
+
+
+
+    }
 }
