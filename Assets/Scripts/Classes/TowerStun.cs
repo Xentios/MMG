@@ -12,7 +12,7 @@ public class TowerStun : Tower
 
 
 
-    public override bool HandleZomWick(Collider2D collision)
+    public override bool HandleZomWick(EnemyMovement zomWick)
     {
         if (ammoCount <= 0) return false;
         if (effectTimer > 0) return false;

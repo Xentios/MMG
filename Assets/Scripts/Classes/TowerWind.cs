@@ -11,16 +11,15 @@ public class TowerWind : Tower
     }
 
 
-    public override bool HandleZomWick(Collider2D collision)
+    public override bool HandleZomWick(EnemyMovement zomWick)
     {
         if (effectTimer > 0) return false;
         if (isDisabled == true) return false;
-
-        var ZomWick = collision.gameObject.GetComponent<EnemyMovement>();
-        if (ZomWick.terrainType == TerrainFeatures.TerrainType.Sand) return false;
+        
+        if (zomWick.terrainType == TerrainFeatures.TerrainType.Sand) return false;
 
         Vector2 force = isTopSide ? Vector2.down : Vector2.up;
-        ZomWick.Push(force);
+        zomWick.PushVertical(force);
         effectTimer = effectTimerLimit;
         return false;
     }

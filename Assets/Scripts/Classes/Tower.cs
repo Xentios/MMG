@@ -43,7 +43,7 @@ public abstract class Tower
         this.offTimeLimit = offTimeLimit;
     }
 
-    public abstract bool HandleZomWick(Collider2D collision);
+    public abstract bool HandleZomWick(EnemyMovement zomWick);
 
 
     public virtual void Update(float deltaTime)

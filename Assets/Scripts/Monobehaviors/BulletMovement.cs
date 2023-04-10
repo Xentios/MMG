@@ -22,7 +22,8 @@ public class BulletMovement : MonoBehaviour
         if (collision.CompareTag("ZomWick"))
         {
             var ZomWick = collision.GetComponent<EnemyMovement>();
-            ZomWick.Push(Vector2.right * strenght);
+            //ZomWick.Push(Vector2.right * strenght);
+            ZomWick.PushHorizontal(Vector2.right * strenght);
             Destroy(gameObject);
         }
     }

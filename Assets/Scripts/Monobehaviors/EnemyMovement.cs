@@ -15,7 +15,7 @@ public class EnemyMovement : MonoBehaviour
         Top,
     }
     [SerializeField]
-    private Lane myLane;
+    public Lane myLane;
 
     public TerrainFeatures.TerrainType terrainType;
 
@@ -40,6 +40,7 @@ public class EnemyMovement : MonoBehaviour
 
 
     Rigidbody2D rb2D;
+ 
 
     private float pushResistTimerSet = 0.4f;
     private float pushResistTimer;
@@ -57,7 +58,7 @@ public class EnemyMovement : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();       
     }
-    // Start is called before the first frame update
+   
     void Start()
     {
         pushResistTimer = pushResistTimerSet;
@@ -72,6 +73,10 @@ public class EnemyMovement : MonoBehaviour
         var clip=hurtClips[Random.Range(0, hurtClips.Length)];
         if(clip!=null) hurtAudioSource.PlayOneShot(clip);
     }
+    public void Slide()
+    {
+        //TODO make slide anim here
+    }
 
     // Update is called once per frame
     void Update()
@@ -79,7 +84,7 @@ public class EnemyMovement : MonoBehaviour
         
         if (rb2D.velocity.x > 0)
         {
-            pushResistTimer -= Time.deltaTime;
+            pushResistTimer -= Time.deltaTime; 
         }
 
         if (isStunned)
@@ -93,7 +98,7 @@ public class EnemyMovement : MonoBehaviour
             stunTimer = stunTimerSet;
         }
 
-        if (rb2D.velocity.y == 0)
+        if (rb2D.velocity.y <0.2f)
         {
             actionTimer -= Time.deltaTime;
             if (actionTimer < 0)
@@ -136,8 +141,16 @@ public class EnemyMovement : MonoBehaviour
             WarningSign.SetActive(!WarningSign.activeSelf);
             yield return new WaitForSeconds(0.3f);
         }
-        var force = Random.Range(0, 1f) > 0.5f ? Vector2.up : Vector2.down;
-        Push(force);
+
+        var force = Random.Range(0, 1f) > 0.5f ? Vector2.up : Vector2.down; ;
+        switch (myLane)
+        {            
+            case Lane.Bottom:   force = Vector2.up;
+            break;            
+            case Lane.Top:      force = Vector2.down;
+            break;            
+        }
+        PushVertical(force);
     }
 
     private void FixedUpdate()
@@ -150,18 +163,29 @@ public class EnemyMovement : MonoBehaviour
 
         if (isStunned)
         {
-            if (terrainType != TerrainFeatures.TerrainType.Ice) rb2D.velocity = Vector2.zero;//TODO WARNING this stops other effects.
+            if (terrainType != TerrainFeatures.TerrainType.Ice) rb2D.velocity = new Vector2(0,rb2D.velocity.y);
+            animator.SetFloat("VelocityX", 0);
         }
         else
         {
             rb2D.AddForce(Vector2.left * speedModifier, ForceMode2D.Impulse);
+            animator.SetFloat("VelocityX", rb2D.velocity.x * -1);
         }
-        animator.SetFloat("VelocityX", rb2D.velocity.x*-1);
-
-
     }
 
-  
+    public void PushVertical(Vector2 pushForce)
+    {
+        pushForce.x = 0;
+        Push(pushForce);
+    }
+
+    public void PushHorizontal(Vector2 pushForce)
+    {
+        pushForce.y = 0;
+        if (terrainType == TerrainFeatures.TerrainType.Ice) pushForce *= 1.2f;
+        Push(pushForce);
+    }
+
     public void Push( Vector2 pushForce)
     {
         switch (pushForce.y)
@@ -177,39 +201,45 @@ public class EnemyMovement : MonoBehaviour
             default:
             break;
         }
-
+        
         rb2D.AddForce(pushForce * 100, ForceMode2D.Force);        
     }
 
     public void CheckNewTerrain()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down,0.1f, groundLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left,0.1f, groundLayerMask);
         if (hit.collider != null)
-        {
-            
-            terrainType = hit.collider.GetComponent<GroundScript>().terrainType;
-            Debug.Log(terrainType);
+        {   
+            terrainType = hit.collider.GetComponent<GroundScript>().terrainType;           
             walkAudioSource.clip = walkClips[(int) terrainType];
-            walkAudioSource.Play();
+            if(walkAudioSource.isPlaying==false) walkAudioSource.Play();
         }
     }
     IEnumerator CheckNewTerrainEvery1Second()
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.1f);
             CheckNewTerrain();
         }
     }
 
 
+#if UNITY_EDITOR
+    private void OnGUI()
+    {
+        if (GUI.Button(new Rect(10, 170, 150, 130), "Push Up"))
+            Push(Vector2.up);
 
-    //private void OnGUI()
-    //{
-    //    if (GUI.Button(new Rect(10, 70, 150, 130), "Push Up"))
-    //        Push(Vector2.up);
+        if (GUI.Button(new Rect(200, 170, 150, 130), "Push Down"))
+            Push(Vector2.down);
 
-    //    if (GUI.Button(new Rect(200, 70, 150, 130), "Push Down"))
-    //        Push(Vector2.down);
-    //}
+        if (GUI.Button(new Rect(800, 170, 150, 130), "Push back"))
+        {
+            rb2D.velocity = Vector2.zero;
+            Push(Vector2.right);
+        }
+            
+    }
+#endif
 }

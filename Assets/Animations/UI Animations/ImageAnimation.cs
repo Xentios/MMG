@@ -26,29 +26,31 @@ public class ImageAnimation : MonoBehaviour
     private void Start()
     {
 		startingPosition = image.gameObject.transform.position;
+		spritePerFrame = 6;
 	}
 
-    void Update()
-	{
+
+    private void FixedUpdate()
+    {
 		if (!loop && index == sprites.Length) return;
 		frame++;
 		if (frame < spritePerFrame) return;
-		image.sprite = sprites[index];		
+		image.sprite = sprites[index];
 		frame = 0;
 		index++;
-		if(move) MyEdit(index);
+		if (move) MyEdit(index);
 		if (index >= sprites.Length)
 		{
 			if (move) MyEditEnd();
 			if (loop) index = 0;
 			if (destroyOnEnd) Destroy(gameObject);
-			
+
 		}
 	}
 
 
-	
-	private void MyEdit(int index)
+
+    private void MyEdit(int index)
     {
 		var pos = image.gameObject.transform.position;
 		image.gameObject.transform.position = new Vector3(pos.x, pos.y + movement_offset, pos.z);

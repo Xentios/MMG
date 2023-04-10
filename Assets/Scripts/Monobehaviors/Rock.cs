@@ -45,6 +45,10 @@ public class Rock : MonoBehaviour
         {
             ZomWick.Stun();
         }
+        else
+        {
+            ZomWick.Slide();
+        }
         isDisabled = true;
         
         GetComponent<CircleCollider2D>().enabled = false;

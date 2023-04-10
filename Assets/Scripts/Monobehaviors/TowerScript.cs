@@ -88,12 +88,12 @@ public class TowerScript : MonoBehaviour
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if(collision.CompareTag("ZomWick")){
-                if (towerType.HandleZomWick(collision))
+            var zomWick = collision.GetComponent<EnemyMovement>();
+                if (towerType.HandleZomWick(zomWick))
                 {
+                    //How to Instantiate from normal classes with a good design? 
                     Instantiate(rockPrefab, transform.position, Quaternion.identity);
-                    animator.SetTrigger("Hit");
-                    //var x = (TowerStun) towerType;
-                    //animator.SetInteger("Ammo", x.ammoCount);
+                    animator.SetTrigger("Hit");             
                     audioSource.Play();
                 }            
             }
