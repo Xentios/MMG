@@ -5,16 +5,13 @@ using UnityEngine;
 public class FlashLight : MonoBehaviour
 {
 
-    public Color changecolor;
-    // Start is called before the first frame update
-    void Start()
+    public UnityEngine.Rendering.Universal.Light2D changecolor;
+   
+
+    private void Update()
     {
-        changecolor = Color.white;
+        changecolor.intensity = Mathf.PingPong(Time.time, 1)*150 + 100;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

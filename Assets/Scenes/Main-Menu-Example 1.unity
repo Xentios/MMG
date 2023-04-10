@@ -1252,6 +1252,7 @@ MonoBehaviour:
   loop: 1
   destroyOnEnd: 0
   move: 0
+  movement_offset: 1
 --- !u!114 &289105871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1429,6 +1430,7 @@ MonoBehaviour:
   loop: 1
   destroyOnEnd: 0
   move: 0
+  movement_offset: 1
 --- !u!1 &351182294
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,6 +1441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 351182295}
   - component: {fileID: 351182296}
+  - component: {fileID: 351182297}
   m_Layer: 5
   m_Name: Light 2D
   m_TagString: Untagged
@@ -2070,6 +2073,19 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &351182297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351182294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aa0c3393237fca4b861f2c29ccba13b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changecolor: {fileID: 351182296}
 --- !u!1 &394115795
 GameObject:
   m_ObjectHideFlags: 0
@@ -2265,6 +2281,7 @@ MonoBehaviour:
   loop: 1
   destroyOnEnd: 0
   move: 0
+  movement_offset: 1
 --- !u!1 &463879057
 GameObject:
   m_ObjectHideFlags: 0
@@ -2326,6 +2343,7 @@ MonoBehaviour:
   loop: 1
   destroyOnEnd: 0
   move: 0
+  movement_offset: 1
 --- !u!114 &463879060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3358,6 +3376,7 @@ MonoBehaviour:
   loop: 1
   destroyOnEnd: 0
   move: 0
+  movement_offset: 1
 --- !u!1 &783999732
 GameObject:
   m_ObjectHideFlags: 0
@@ -3604,6 +3623,7 @@ MonoBehaviour:
   loop: 1
   destroyOnEnd: 0
   move: 0
+  movement_offset: 1
 --- !u!1 &803587060
 GameObject:
   m_ObjectHideFlags: 0
@@ -4377,10 +4397,11 @@ MonoBehaviour:
   - {fileID: 978055908, guid: 37a29f060d807bb458b2837db2b9584b, type: 3}
   - {fileID: 978055908, guid: 37a29f060d807bb458b2837db2b9584b, type: 3}
   - {fileID: 978055908, guid: 37a29f060d807bb458b2837db2b9584b, type: 3}
-  spritePerFrame: 75
+  spritePerFrame: 150
   loop: 1
   destroyOnEnd: 0
   move: 1
+  movement_offset: 3
 --- !u!114 &1081949122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7285,6 +7306,7 @@ MonoBehaviour:
   loop: 1
   destroyOnEnd: 0
   move: 0
+  movement_offset: 1
 --- !u!1 &1849047813
 GameObject:
   m_ObjectHideFlags: 0
@@ -7464,6 +7486,7 @@ MonoBehaviour:
   loop: 1
   destroyOnEnd: 0
   move: 0
+  movement_offset: 1
 --- !u!114 &1852100452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8223,6 +8246,7 @@ MonoBehaviour:
   loop: 1
   destroyOnEnd: 0
   move: 0
+  movement_offset: 1
 --- !u!114 &2054580368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10196,6 +10220,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15, y: 0.282}
   m_AnchorMax: {x: 0.28333333, y: 0.71800005}
-  m_AnchoredPosition: {x: 14.814281, y: 0}
+  m_AnchoredPosition: {x: 14.814243, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

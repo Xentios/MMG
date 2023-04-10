@@ -10,6 +10,7 @@ public class ImageAnimation : MonoBehaviour
 	public bool loop = true;
 	public bool destroyOnEnd = false;
 	public bool move = false;
+	public float movement_offset = 1;
 
 
 	private int index = 0;
@@ -45,14 +46,16 @@ public class ImageAnimation : MonoBehaviour
 		}
 	}
 
+
+	
 	private void MyEdit(int index)
     {
 		var pos = image.gameObject.transform.position;
-		image.gameObject.transform.position = new Vector3(pos.x, pos.y + 16, pos.z);
+		image.gameObject.transform.position = new Vector3(pos.x, pos.y + movement_offset, pos.z);
 	}
 	private void MyEditEnd()
     {
 		var pos = image.gameObject.transform.position;
-		image.gameObject.transform.position = new Vector3(pos.x, pos.y - index * 16, pos.z);
+		image.gameObject.transform.position = new Vector3(pos.x, pos.y - index * movement_offset, pos.z);
 	}
 }
