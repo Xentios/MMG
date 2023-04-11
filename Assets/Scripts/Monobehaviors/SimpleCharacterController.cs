@@ -43,9 +43,8 @@ public class SimpleCharacterController : MonoBehaviour
         {
             MoveDown();
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-           // Debug.Log("Shoot");
+        if (Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.RightControl))
+        {           
             Shoot();
         }
 
