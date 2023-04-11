@@ -15,6 +15,8 @@ public class TowerScript : MonoBehaviour
     [SerializeField]
     private Transform visual;
     [SerializeField]
+    private Transform secondaryVisual;
+    [SerializeField]
     private Animator animator;
 
     [SerializeField]
@@ -55,6 +57,7 @@ public class TowerScript : MonoBehaviour
     {
         audioSource.Stop();       
         animator.SetBool("Disabled",true);
+        if(secondaryVisual!=null) secondaryVisual.gameObject.SetActive(false);
         StartCoroutine(ScaleOverTime());
     }
 

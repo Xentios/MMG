@@ -79,5 +79,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower Wind Bottom
       objectReference: {fileID: 0}
+    - target: {fileID: 7739395664458568812, guid: 02463ca5817bb4a48ad3f6a59634f51f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.83
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02463ca5817bb4a48ad3f6a59634f51f, type: 3}
