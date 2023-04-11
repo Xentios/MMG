@@ -75,7 +75,7 @@ public class EnemyMovement : MonoBehaviour
     }
     public void Slide()
     {
-        //TODO make slide anim here
+        animator.SetTrigger("FakeStunned");
     }
 
     // Update is called once per frame
