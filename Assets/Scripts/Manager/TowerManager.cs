@@ -56,6 +56,7 @@ public class TowerManager : MonoBehaviour
         {
             case TowerScript.TowerTypes.Wind:
             offset_y = 0.7f;
+            offset_y= towerSlotInfo.isTop ? 0.7f : 0.4f;
             break;
             case TowerScript.TowerTypes.Stun:
             index = 2;
