@@ -138,6 +138,13 @@ public class EnemyMovement : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
         }
 
+        while (isStunned)
+        {
+            WarningSign.SetActive(true);
+            yield return null;
+        }
+        WarningSign.SetActive(false);
+
         var force = Random.Range(0, 1f) > 0.5f ? Vector2.up : Vector2.down; ;
         switch (myLane)
         {            
