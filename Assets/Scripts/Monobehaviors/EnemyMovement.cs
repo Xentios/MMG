@@ -77,8 +77,7 @@ public class EnemyMovement : MonoBehaviour
     {
         animator.SetTrigger("FakeStunned");
     }
-
-    // Update is called once per frame
+       
     void Update()
     {
         
@@ -124,9 +123,6 @@ public class EnemyMovement : MonoBehaviour
             default:
             break;
         }
-       
-        
-
     }
 
     private void ChooseAction()
@@ -164,7 +160,8 @@ public class EnemyMovement : MonoBehaviour
         if (isStunned)
         {
             if (terrainType != TerrainFeatures.TerrainType.Ice) rb2D.velocity = new Vector2(0,rb2D.velocity.y);
-            animator.SetFloat("VelocityX", 0);
+            if (terrainType == TerrainFeatures.TerrainType.Booster) rb2D.velocity = new Vector2(-2, rb2D.velocity.y);
+                animator.SetFloat("VelocityX", 0);
         }
         else
         {
