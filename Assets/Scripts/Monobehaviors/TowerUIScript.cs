@@ -14,13 +14,16 @@ public class TowerUIScript : MonoBehaviour, IPointerEnterHandler,IPointerDownHan
     [SerializeField]
     GameObject myPrefab;
 
-    private bool isDragging;
-   
+    private Canvas canvasComponent;
+
+    private void Awake()
+    {
+        canvasComponent = GetComponent<Canvas>();
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (eventData.dragging) return;
-        
+        if (eventData.dragging) return;        
         transform.localScale = Vector3.one * 1.3f;
     }
     public void OnPointerExit(PointerEventData eventData)
@@ -31,21 +34,21 @@ public class TowerUIScript : MonoBehaviour, IPointerEnterHandler,IPointerDownHan
     }
 
     public void OnPointerDown(PointerEventData eventData)
-    {
-        isDragging = true;
-        layoutElement.ignoreLayout = true;       
+    {       
+        layoutElement.ignoreLayout = true;
+        canvasComponent.sortingOrder=2;
     }
     public void OnPointerUp(PointerEventData eventData)
     {
         var pos=Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit= Physics2D.Raycast(pos, Vector2.down, 1, towerSpotLayerMask);
-        ;
+        
         if (hit.collider == null || hit.collider.GetComponent<TowerSlot>().isOccupied)
-        {
-            isDragging = false;
+        {           
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             layoutElement.ignoreLayout = false;
-           
+            canvasComponent.sortingOrder = 1;
+
         }
         else
         {   

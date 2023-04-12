@@ -9,8 +9,6 @@ public class BulletMovement : MonoBehaviour
     private float speed;
     [SerializeField]
     private float strenght;
- 
-
 
     void Update()
     {
@@ -22,7 +20,6 @@ public class BulletMovement : MonoBehaviour
         if (collision.CompareTag("ZomWick"))
         {
             var ZomWick = collision.GetComponent<EnemyMovement>();
-            //ZomWick.Push(Vector2.right * strenght);
             ZomWick.PushHorizontal(Vector2.right * strenght);
             Destroy(gameObject);
         }

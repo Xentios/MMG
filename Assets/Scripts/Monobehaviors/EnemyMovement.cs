@@ -36,10 +36,14 @@ public class EnemyMovement : MonoBehaviour
     AudioClip[] walkClips;
     [SerializeField]
     AudioSource walkAudioSource;
+    [SerializeField]
+    AudioSource bulletHurtAudioSource;
+
+    [SerializeField]
+    Animator visualFX;
 
 
-
-    Rigidbody2D rb2D;
+    private Rigidbody2D rb2D;
  
 
     private float pushResistTimerSet = 0.4f;
@@ -53,6 +57,7 @@ public class EnemyMovement : MonoBehaviour
 
     private float actionTimerReset = 5f;
     private float actionTimer;
+    private bool readyToChangeLane;
 
     private void Awake()
     {
@@ -81,14 +86,21 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         
-        if (rb2D.velocity.x > 0)
+        
+        if (rb2D.velocity.x > 0f)
         {
-            pushResistTimer -= Time.deltaTime; 
+            pushResistTimer -= Time.deltaTime;            
         }
+       
 
         if (isStunned)
         {
             stunTimer -= Time.deltaTime;
+            animator.SetFloat("VelocityX", 0);
+        }
+        else
+        {
+            animator.SetFloat("VelocityX", rb2D.velocity.x * -1);
         }
 
         if (stunTimer < 0)
@@ -144,23 +156,34 @@ public class EnemyMovement : MonoBehaviour
             yield return null;
         }
         WarningSign.SetActive(false);
+        readyToChangeLane = true;
+       
+    }
+
+    private void ChangeLane()
+    {
+        readyToChangeLane = false;
 
         var force = Random.Range(0, 1f) > 0.5f ? Vector2.up : Vector2.down; ;
         switch (myLane)
-        {            
-            case Lane.Bottom:   force = Vector2.up;
-            break;            
-            case Lane.Top:      force = Vector2.down;
-            break;            
+        {
+            case Lane.Bottom:
+            force = Vector2.up;
+            break;
+            case Lane.Top:
+            force = Vector2.down;
+            break;
         }
         PushVertical(force);
+        
     }
 
     private void FixedUpdate()
     {
+        
         if (pushResistTimer < 0f)
         {
-            rb2D.velocity = new Vector2(0,rb2D.velocity.y);
+            rb2D.velocity = new Vector2(0, rb2D.velocity.y);
             pushResistTimer = pushResistTimerSet;
         }
 
@@ -168,12 +191,13 @@ public class EnemyMovement : MonoBehaviour
         {
             if (terrainType != TerrainFeatures.TerrainType.Ice) rb2D.velocity = new Vector2(0,rb2D.velocity.y);
             if (terrainType == TerrainFeatures.TerrainType.Booster) rb2D.velocity = new Vector2(-2, rb2D.velocity.y);
-                animator.SetFloat("VelocityX", 0);
+           
         }
         else
         {
             rb2D.AddForce(Vector2.left * speedModifier, ForceMode2D.Impulse);
-            animator.SetFloat("VelocityX", rb2D.velocity.x * -1);
+           
+            if (readyToChangeLane) ChangeLane();
         }
     }
 
@@ -185,13 +209,18 @@ public class EnemyMovement : MonoBehaviour
 
     public void PushHorizontal(Vector2 pushForce)
     {
-        pushForce.y = 0;
+        bulletHurtAudioSource.pitch = Random.Range(0.3f, 0.8f);
+        bulletHurtAudioSource.Play();
+        pushForce.y = 0;       
+        rb2D.velocity = new Vector2(0, rb2D.velocity.y); 
         if (terrainType == TerrainFeatures.TerrainType.Ice) pushForce *= 1.2f;
+        if (terrainType == TerrainFeatures.TerrainType.Sand) pushForce *= 0.8f;
+        pushResistTimer = pushResistTimerSet;
         Push(pushForce);
     }
 
     public void Push( Vector2 pushForce)
-    {
+    {       
         switch (pushForce.y)
         {
             case < 0:
@@ -206,7 +235,7 @@ public class EnemyMovement : MonoBehaviour
             break;
         }
         
-        rb2D.AddForce(pushForce * 100, ForceMode2D.Force);        
+        rb2D.AddForce(pushForce * 100, ForceMode2D.Force);       
     }
 
     public void CheckNewTerrain()
@@ -217,6 +246,7 @@ public class EnemyMovement : MonoBehaviour
             terrainType = hit.collider.GetComponent<GroundScript>().terrainType;           
             walkAudioSource.clip = walkClips[(int) terrainType];
             if(walkAudioSource.isPlaying==false) walkAudioSource.Play();
+            visualFX.SetInteger("TerrainType", (int) terrainType);
         }
     }
     IEnumerator CheckNewTerrainEvery1Second()
@@ -239,9 +269,8 @@ public class EnemyMovement : MonoBehaviour
             Push(Vector2.down);
 
         if (GUI.Button(new Rect(800, 170, 150, 130), "Push back"))
-        {
-            rb2D.velocity = Vector2.zero;
-            Push(Vector2.right);
+        {            
+            Push(Vector2.right*12);
         }
             
     }
