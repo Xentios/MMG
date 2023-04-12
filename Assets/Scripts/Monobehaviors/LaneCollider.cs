@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class LaneCollider : MonoBehaviour
 {
     [SerializeField]
@@ -11,7 +13,6 @@ public class LaneCollider : MonoBehaviour
     {
         myLane = (EnemyMovement.Lane) transform.position.y+3;//TODO remove this later    
     }
-
 
     private void OnTriggerExit2D(Collider2D collision)
     {       
@@ -24,7 +25,4 @@ public class LaneCollider : MonoBehaviour
                 rb2D.velocity = new Vector2(rb2D.velocity.x, 0f);           
         }
     }
-
-  
-   
 }
