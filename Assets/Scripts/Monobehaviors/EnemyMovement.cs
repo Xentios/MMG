@@ -53,7 +53,8 @@ public class EnemyMovement : MonoBehaviour
 
     private  float stunTimerSet = 1f;
     public float stunTimer;
-    public bool isStunned;
+    private bool isStunned;
+    private bool isStunApplied = true;
 
     private float actionTimerReset = 5f;
     private float actionTimer;
@@ -75,9 +76,19 @@ public class EnemyMovement : MonoBehaviour
     public void Stun()
     {
         isStunned = true;
+        isStunApplied = false;
         var clip=hurtClips[Random.Range(0, hurtClips.Length)];
         if(clip!=null) hurtAudioSource.PlayOneShot(clip);
     }
+
+    public void StopZomWick()
+    {
+        isStunned = true;
+        stunTimer = 10f;
+        rb2D.velocity = Vector2.zero;
+        rb2D.simulated = false;
+    }
+
     public void Slide()
     {
         animator.SetTrigger("FakeStunned");
@@ -122,21 +133,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
 
-        switch (terrainType)
-        {
-            case TerrainFeatures.TerrainType.Default:
-            speedModifier = 0.01f;
-            break;
-            case TerrainFeatures.TerrainType.Booster:
-            speedModifier = 0.01f*6f;
-            break;
-            case TerrainFeatures.TerrainType.Ice:
-            break;
-            case TerrainFeatures.TerrainType.Sand:
-            break;
-            default:
-            break;
-        }
+       
     }
 
     private void ChooseAction()
@@ -167,13 +164,19 @@ public class EnemyMovement : MonoBehaviour
         readyToChangeLane = false;
 
         var force = Random.Range(0, 1f) > 0.5f ? Vector2.up : Vector2.down; ;
+
+        //Making wick change 2 lanes if random is 2 and made it 1/4 change to happen
+        var random=  Random.Range(1, 3);
+        random = Random.Range(0, 2) == 0 ? 1 : random; 
         switch (myLane)
         {
             case Lane.Bottom:
-            force = Vector2.up;
+            force = Vector2.up* random;
+            myLane += random - 1;
             break;
             case Lane.Top:
-            force = Vector2.down;
+            force = Vector2.down* random;
+            myLane -= random - 1;
             break;
         }
         PushVertical(force);
@@ -190,10 +193,13 @@ public class EnemyMovement : MonoBehaviour
         }
 
         if (isStunned)
-        {
-            if (terrainType != TerrainFeatures.TerrainType.Ice) rb2D.velocity = new Vector2(0,rb2D.velocity.y);
-            if (terrainType == TerrainFeatures.TerrainType.Booster) rb2D.velocity = new Vector2(-2, rb2D.velocity.y);
-           
+        {           
+            if (isStunApplied == false&& rb2D.velocity.x < 0f)
+            {
+                if (terrainType != TerrainFeatures.TerrainType.Ice) rb2D.velocity = new Vector2(0, rb2D.velocity.y);
+                if (terrainType == TerrainFeatures.TerrainType.Booster) rb2D.velocity = new Vector2(-2, rb2D.velocity.y);
+                isStunApplied = true;
+            }           
         }
         else
         {
@@ -245,7 +251,26 @@ public class EnemyMovement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left,0.1f, groundLayerMask);
         if (hit.collider != null)
         {   
-            terrainType = hit.collider.GetComponent<GroundScript>().terrainType;           
+            terrainType = hit.collider.GetComponent<GroundScript>().terrainType;
+
+            switch (terrainType)
+            {
+                case TerrainFeatures.TerrainType.Default:
+                speedModifier = 0.01f;
+                break;
+                case TerrainFeatures.TerrainType.Booster:
+                speedModifier = 0.01f * 6f;
+                break;
+                case TerrainFeatures.TerrainType.Ice:
+                speedModifier = 0.01f;
+                break;
+                case TerrainFeatures.TerrainType.Sand:
+                speedModifier = 0.01f;
+                break;
+                default:
+                break;
+            }
+
             walkAudioSource.clip = walkClips[(int) terrainType];
             if(walkAudioSource.isPlaying==false) walkAudioSource.Play();
             visualFX.SetInteger("TerrainType", (int) terrainType);

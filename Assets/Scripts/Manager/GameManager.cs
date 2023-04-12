@@ -48,8 +48,7 @@ public class GameManager : MonoBehaviour
         gameTimerText.text = "" + (int) gameTimerInSeconds;
         if (gameTimerInSeconds < 0)
         {
-            zomWick.GetComponent<EnemyMovement>().isStunned = true;
-            zomWick.GetComponent<EnemyMovement>().stunTimer = 10f;
+            zomWick.GetComponent<EnemyMovement>().StopZomWick();
             music.volume = 0f;
             audioSource.clip = winSound;
             audioSource.Play();
