@@ -80,4 +80,14 @@ public class SimpleCharacterController : MonoBehaviour
         var y = transform.position.y + (moveSpeed * -1);
         transform.position = new Vector3(transform.position.x, y, transform.position.z);
     }
+
+    public void MoveVisualAway()
+    {
+
+    }
+
+    public void MoveVisualFront()
+    {
+
+    }
 }
