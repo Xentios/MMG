@@ -25,12 +25,10 @@ public class SimpleCharacterController : MonoBehaviour
 
     [SerializeField]
     private AudioClip[] shootingSounds;
-    void Start()
-    {
-       // shootTimer = shootTimerLimit;
-    }
 
-    // Update is called once per frame
+    [SerializeField]
+    private AudioSource reloadingSound;
+ 
     void Update()
     {
         shootTimer -= Time.deltaTime;
@@ -48,6 +46,10 @@ public class SimpleCharacterController : MonoBehaviour
             Shoot();
         }
 
+        if (shootTimer > 0f && shootTimer < 1f&& reloadingSound.isPlaying==false)
+        {
+            reloadingSound.Play();
+        }
     }
 
     private void Shoot()
