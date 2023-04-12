@@ -97,9 +97,11 @@ public class EnemyMovement : MonoBehaviour
         {
             stunTimer -= Time.deltaTime;
             animator.SetFloat("VelocityX", 0);
+            visualFX.gameObject.SetActive(false);
         }
         else
         {
+            visualFX.gameObject.SetActive(true);
             animator.SetFloat("VelocityX", rb2D.velocity.x * -1);
         }
 
