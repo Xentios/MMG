@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SimpleCharacterController : MonoBehaviour
 {
-    
+    [SerializeField]
+    private float touch_offset=0.5f;
+
     [SerializeField]
     private EnemyMovement.Lane myLane;
 
@@ -28,10 +30,48 @@ public class SimpleCharacterController : MonoBehaviour
 
     [SerializeField]
     private AudioSource reloadingSound;
- 
+
+    private void Start()
+    {
+        Input.multiTouchEnabled = true;
+    }
+
     void Update()
     {
         shootTimer -= Time.deltaTime;
+
+
+#if UNITY_ANDROID       
+        if (Input.touchCount > 0)
+        {
+            foreach (Touch touch in Input.touches)
+            {
+                if (touch.phase != TouchPhase.Began) continue;
+
+                if (touch.position.x < Screen.width / 4)
+                {
+                    
+                        var touchWorldY=Camera.main.ScreenToWorldPoint(touch.position, Camera.main.stereoActiveEye).y;
+                       
+                        if (touchWorldY < transform.position.y- touch_offset)
+                        {
+                            MoveDown();
+                        }
+                        else if(touchWorldY > transform.position.y + touch_offset)
+                        {
+                            MoveUp();
+                        }
+                    
+                    
+                    
+                }
+                else if (touch.position.x > Screen.width *3/ 4 )
+                {
+                    Shoot();
+                }
+            }
+        }
+#else
 
         if (Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -45,11 +85,14 @@ public class SimpleCharacterController : MonoBehaviour
         {           
             Shoot();
         }
+#endif
 
-        if (shootTimer > 0f && shootTimer < 1f&& reloadingSound.isPlaying==false)
+            if (shootTimer > 0f && shootTimer < 1f&& reloadingSound.isPlaying==false)
         {
             reloadingSound.Play();
         }
+
+
     }
 
     private void Shoot()
@@ -83,11 +126,11 @@ public class SimpleCharacterController : MonoBehaviour
 
     public void MoveVisualAway()
     {
-
+        //TODO maybe?
     }
 
     public void MoveVisualFront()
     {
-
+        //TODO maybe?
     }
 }

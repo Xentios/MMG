@@ -57,8 +57,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Game Over");
+    {       
         audioSource.clip = loseSound;
         audioSource.Play();
         music.volume = 0f;
