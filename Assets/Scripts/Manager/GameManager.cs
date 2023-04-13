@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Rendering;
+using DG.Tweening;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject timeBar;
+
     [SerializeField]
     private float gameTimerInSeconds;
 
@@ -35,17 +39,20 @@ public class GameManager : MonoBehaviour
         music = musicObject.GetComponent<AudioSource>();
         var winVolumeObject = GameObject.Find("GameWin Volume");
         winVolume = winVolumeObject.GetComponent<Volume>();
+        timeBar.transform.DOScaleX(0, gameTimerInSeconds);
     }
 
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)){
-            SceneManager.LoadScene(0);
+            ChangeScene(0);
         }
+       
         if (gameTimerInSeconds < 0) return;
         gameTimerInSeconds -= Time.deltaTime;
         gameTimerText.text = "" + (int) gameTimerInSeconds;
+        
         if (gameTimerInSeconds < 0)
         {
             zomWick.GetComponent<EnemyMovement>().StopZomWick();
@@ -74,9 +81,8 @@ public class GameManager : MonoBehaviour
             Volume.weight = elapsedTime;
             yield return null;
         }
-        yield return new WaitForSeconds(3f);
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.buildIndex);
+        yield return new WaitForSeconds(3f);        
+        ChangeScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     IEnumerator WinGameEffect()
@@ -92,6 +98,12 @@ public class GameManager : MonoBehaviour
         }
         yield return new WaitForSeconds(3f);
         Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene((scene.buildIndex + 1)%4);
+        ChangeScene((scene.buildIndex + 1) % SceneManager.sceneCountInBuildSettings);
     }
+
+    private void ChangeScene(int index)
+    {
+        DOTween.Clear();
+        SceneManager.LoadScene(index);
+    } 
 }
