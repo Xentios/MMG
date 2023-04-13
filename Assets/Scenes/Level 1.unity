@@ -3612,7 +3612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBar: {fileID: 739503818}
-  gameTimerInSeconds: 10
+  gameTimerInSeconds: 100
   gameTimerText: {fileID: 1219519572}
   zomWick: {fileID: 378506238}
   winSound: {fileID: 8300000, guid: a953129e8f599444fbd07b383b9b4b1e, type: 3}
