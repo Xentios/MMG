@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu]
+[Serializable]
 public class FloatVariable : ScriptableObject
 {
 #if UNITY_EDITOR

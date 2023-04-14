@@ -34,8 +34,9 @@ public class DificultyManager : MonoBehaviour
             var toggle = difToggleGroup.GetFirstActiveToggle();
             var x=toggle.GetComponent<ToggleValue>();
 
-            EnemySpeed = x.EnemySpeed;
-            ReloadTimer = x.ReloadTimer;
+            EnemySpeed.Value = x.EnemySpeed;
+            ReloadTimer.Value = x.ReloadTimer;
+            Debug.Log(ReloadTimer.Value);
         }       
     }
     

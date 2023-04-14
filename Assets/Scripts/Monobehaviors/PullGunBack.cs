@@ -5,7 +5,8 @@ using DG.Tweening;
 
 public class PullGunBack : MonoBehaviour
 {
-   
+    public FloatReference ReloadSpeed;
+
     public void MoveVisualAway()
     {
         transform.DOLocalMoveX(-0.9f, 1).SetEase(Ease.OutBounce);
@@ -15,6 +16,6 @@ public class PullGunBack : MonoBehaviour
 
     public void MoveVisualFront()
     {
-        transform.DOLocalMoveX(0.9f, 1).SetDelay(2f).SetEase(Ease.OutFlash);
+        transform.DOLocalMoveX(0.9f, 1).SetDelay(ReloadSpeed-1).SetEase(Ease.OutFlash);
     }
 }
