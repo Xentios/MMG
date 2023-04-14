@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using System.Collections;
 
 public class Rock : MonoBehaviour
 {
@@ -57,15 +57,12 @@ public class Rock : MonoBehaviour
     }
 
     private void StopInAir()
-    {
-        var rb2D = GetComponent<Rigidbody2D>();
+    {        
         isDisabled = true;
-        GetComponent<CircleCollider2D>().enabled = false;
-        animator.SetTrigger("Hit");
-        rb2D.velocity = Vector2.zero;        
-        transform.rotation=Quaternion.Euler(new Vector3(0,0, Random.rotation.eulerAngles.y));
-        rb2D.angularVelocity = 0f;
+        GetComponent<CircleCollider2D>().enabled = false;              
+        transform.rotation=Quaternion.Euler(new Vector3(0,0, Random.rotation.eulerAngles.y));     
         transform.localScale *= Random.Range(0.5f, 0.9f);
+        StopLogic();
     }
 
     IEnumerator StopInTime()
@@ -75,8 +72,16 @@ public class Rock : MonoBehaviour
         rb2D.AddRelativeForce(randomVector*0.001f);     
         rb2D.drag = 1.2f;
         yield return new WaitForSeconds(0.3f);
-        animator.SetTrigger("Hit");      
+        StopLogic();     
+     
+    }
+
+    private void StopLogic()
+    {
+        var rb2D = GetComponent<Rigidbody2D>();
+        animator.SetTrigger("Hit");
         rb2D.velocity = Vector2.zero;
-        rb2D.angularVelocity = 0f;
+        rb2D.angularVelocity = 0f;    
+        Camera.main.DOShakePosition(0.1f,0.1f,4,90,false);
     }
 }
