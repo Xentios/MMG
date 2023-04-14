@@ -15,9 +15,6 @@ public class GameManager : MonoBehaviour
     private float gameTimerInSeconds;
 
     [SerializeField]
-    private TMP_Text gameTimerText;
-
-    [SerializeField]
     private GameObject zomWick;
 
     [SerializeField]
@@ -51,8 +48,7 @@ public class GameManager : MonoBehaviour
        
         if (gameTimerInSeconds < 0) return;
         gameTimerInSeconds -= Time.deltaTime;
-        gameTimerText.text = "" + (int) gameTimerInSeconds;
-        
+      
         if (gameTimerInSeconds < 0)
         {
             zomWick.GetComponent<EnemyMovement>().StopZomWick();

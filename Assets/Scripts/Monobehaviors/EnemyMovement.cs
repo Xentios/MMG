@@ -49,7 +49,9 @@ public class EnemyMovement : MonoBehaviour
     private float pushResistTimerSet = 0.4f;
     private float pushResistTimer;
 
-    private float speedModifier = 0.01f;
+    //private float speedModifier = 0.01f;
+
+    public FloatReference speedModifier;
 
     private  float stunTimerSet = 1f;
     public float stunTimer;
@@ -250,26 +252,10 @@ public class EnemyMovement : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left,0.1f, groundLayerMask);
         if (hit.collider != null)
-        {   
-            terrainType = hit.collider.GetComponent<GroundScript>().terrainType;
-
-            switch (terrainType)
-            {
-                case TerrainFeatures.TerrainType.Default:
-                speedModifier = 0.01f;
-                break;
-                case TerrainFeatures.TerrainType.Booster:
-                speedModifier = 0.01f * 6f;
-                break;
-                case TerrainFeatures.TerrainType.Ice:
-                speedModifier = 0.01f;
-                break;
-                case TerrainFeatures.TerrainType.Sand:
-                speedModifier = 0.01f;
-                break;
-                default:
-                break;
-            }
+        {
+            var ground = hit.collider.GetComponent<GroundScript>();
+            terrainType = ground.terrainType;
+            speedModifier = ground.terrainSpeed;
 
             walkAudioSource.clip = walkClips[(int) terrainType];
             if(walkAudioSource.isPlaying==false) walkAudioSource.Play();

@@ -16,9 +16,10 @@ public class SimpleCharacterController : MonoBehaviour
     [SerializeField]
     private float moveSpeed=1;
 
-    [SerializeField]
-    private float shootTimerLimit = 10;
-    public float shootTimer;
+    //[SerializeField]
+    //private float shootTimerLimit = 10;
+    public FloatReference gunReloadTimer;
+    private float shootTimer;
 
     [SerializeField]
     private Animator animator;
@@ -99,7 +100,7 @@ public class SimpleCharacterController : MonoBehaviour
     {
         if (shootTimer > 0) return;
         Instantiate(Bullet,transform.position,Quaternion.identity);
-        shootTimer = shootTimerLimit;
+        shootTimer = gunReloadTimer;
         animator.SetTrigger("Shoot");
         var soundClip = shootingSounds[Random.Range(0, shootingSounds.Length)];
         audioSource.clip = soundClip;

@@ -100,6 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrainType: 0
+  terrainSpeed:
+    UseConstant: 1
+    ConstantValue: 0.01
+    Variable: {fileID: 0}
 --- !u!61 &6623933557502057166
 BoxCollider2D:
   m_ObjectHideFlags: 0

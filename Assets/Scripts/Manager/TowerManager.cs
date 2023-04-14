@@ -74,7 +74,7 @@ public class TowerManager : MonoBehaviour
     }
 
 
-    //Debug.Log("Remove Tower and Add back to UI");
+    //("Remove Tower and Add back to UI");
     public  void RecyleTower(Tower t)
     {
         TowerScript towerToRemove=null;
@@ -99,13 +99,8 @@ public class TowerManager : MonoBehaviour
             int index = (int) towerToRemove.selectedTowerTypes;            
             GameObject.Destroy(towerToRemove.gameObject);
             Instantiate(UITowers[index], towerUIHolder.transform);
-
         }
        
     }
 
-    private void Update()
-    {
-        
-    }
 }

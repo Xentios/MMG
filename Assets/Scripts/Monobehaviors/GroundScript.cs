@@ -6,5 +6,8 @@ public class GroundScript : MonoBehaviour
 {
     [SerializeField]
     public TerrainFeatures.TerrainType terrainType;
-   
+    [SerializeField]
+    public FloatReference terrainSpeed;
+
+
 }

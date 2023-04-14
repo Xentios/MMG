@@ -40,7 +40,7 @@ public class TowerUIScript : MonoBehaviour, IPointerEnterHandler,IPointerDownHan
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        var pos=Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var pos=Camera.main.ScreenToWorldPoint(eventData.position);
         RaycastHit2D hit= Physics2D.Raycast(pos, Vector2.down, 1, towerSpotLayerMask);
         
         if (hit.collider == null || hit.collider.GetComponent<TowerSlot>().isOccupied)

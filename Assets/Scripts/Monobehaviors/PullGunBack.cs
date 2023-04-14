@@ -9,6 +9,7 @@ public class PullGunBack : MonoBehaviour
     public void MoveVisualAway()
     {
         transform.DOLocalMoveX(-0.9f, 1).SetEase(Ease.OutBounce);
+        
         MoveVisualFront();
     }
 
