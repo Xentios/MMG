@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8477490053763885860}
   - component: {fileID: 3565142979027084964}
   m_Layer: 3
-  m_Name: "\u0130ce Ground"
+  m_Name: Ice Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
