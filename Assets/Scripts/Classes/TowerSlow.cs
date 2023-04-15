@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class TowerSlow : Tower
 {
-    public TowerSlow(float timeLimit, bool isTop, float offTimeLimit, float recTime) : base(timeLimit, isTop, offTimeLimit, recTime)
-    {
-    }
+    //public TowerSlow(float timeLimit, bool isTop, float offTimeLimit, float recTime) : base(timeLimit, isTop, offTimeLimit, recTime)
+    //{
+    //}
     public override bool HandleZomWick(EnemyMovement zomWick)
     {
         throw new System.NotImplementedException();
     }
 
-    public override void Update(float deltaTime)
+    public override void UpdateLogic(float deltaTime, TowerScript owner)
     {
-        base.Update(deltaTime);
+        base.UpdateLogic(deltaTime,owner);
     }
 
 }

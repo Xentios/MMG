@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TowerScript : MonoBehaviour
 {
     public Tower towerType;
+
+    
 
     [SerializeField]
     public bool isTop;
@@ -29,19 +32,24 @@ public class TowerScript : MonoBehaviour
         Stun
     }
 
+    //[HideInInspector]
+    public UnityEvent<TowerScript> recyleEvent;
     private void Awake()
     {
+        recyleEvent = new UnityEvent<TowerScript>();
+        towerType.UpdateLogic2(isTop);
         switch (selectedTowerTypes)
         {
             case TowerTypes.Wind:
-            towerType = new TowerWind(3f, isTop,5f,3f);
+            //towerType = new TowerWind(3f, isTop,5f,3f);
             break;
             case TowerTypes.Stun:
-            towerType = new TowerStun(3f, isTop,6f,6f);
+            //towerType = new TowerStun(3f, isTop,6f,6f);
             break;
             default:
             break;
         }
+        towerType.disabledEvent = new UnityEvent();
         towerType.disabledEvent.AddListener(OnTowerDisable);
 
         audioSource = GetComponent<AudioSource>();
@@ -50,55 +58,57 @@ public class TowerScript : MonoBehaviour
 
     private void OnDestroy()
     {
-        towerType?.disabledEvent.RemoveListener(OnTowerDisable);
+        if(towerType!=null) towerType.disabledEvent.RemoveListener(OnTowerDisable);
     }
 
     private void OnTowerDisable()
     {
-        audioSource.Stop();       
-        animator.SetBool("Disabled",true);
-        if(secondaryVisual!=null) secondaryVisual.gameObject.SetActive(false);
+        audioSource.Stop();
+        animator.SetBool("Disabled", true);
+        if (secondaryVisual != null) secondaryVisual.gameObject.SetActive(false);
         StartCoroutine(ScaleOverTime());
     }
 
-    
-    
+
+
     private IEnumerator ScaleOverTime()
     {
-        float duration= towerType.recyleTimer/2;
+        float duration = towerType.recyleTimer / 2;
         float elapsedTime = 0;
         float startScale = 1f;
         float endScale = 0.5f;
 
         yield return new WaitForSeconds(towerType.recyleTimer / 2);
         while (elapsedTime < duration)
-        {           
-            float currentScale = Mathf.Lerp(startScale, endScale, elapsedTime / duration);           
+        {
+            float currentScale = Mathf.Lerp(startScale, endScale, elapsedTime / duration);
             transform.localScale = new Vector3(currentScale, currentScale, currentScale);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-                
+
         transform.localScale = new Vector3(endScale, endScale, endScale);
+        recyleEvent.Invoke(this);
     }
 
 
     void Update()
-        {
-            towerType.Update(Time.deltaTime);        
-        }
+    {
+        towerType.UpdateLogic(Time.deltaTime,gameObject.GetComponent<TowerScript>());
+    }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("ZomWick"))
         {
-            if(collision.CompareTag("ZomWick")){
             var zomWick = collision.GetComponent<EnemyMovement>();
-                if (towerType.HandleZomWick(zomWick))
-                {
-                    //How to Instantiate from normal classes with a good design? 
-                    Instantiate(rockPrefab, transform.position, Quaternion.identity);
-                    animator.SetTrigger("Hit");             
-                    audioSource.Play();
-                }            
+            if (towerType.HandleZomWick(zomWick))
+            {
+                //How to Instantiate from normal classes with a good design? 
+                Instantiate(towerType.projectilePrefab, transform.position, Quaternion.identity);
+                animator.SetTrigger("Hit");
+                audioSource.Play();
             }
         }
+    }
 }

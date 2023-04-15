@@ -5,17 +5,20 @@ using UnityEngine;
 
 public class TowerTesla : Tower
 {
-    public TowerTesla(float timeLimit, bool isTop, float offTimeLimit, float recTime) : base(timeLimit, isTop, offTimeLimit, recTime)
-    {
-    }
+    //public TowerTesla(float timeLimit, bool isTop, float offTimeLimit, float recTime) : base(timeLimit, isTop, offTimeLimit, recTime)
+    //{
+    //}
     public override bool HandleZomWick(EnemyMovement zomWick)
     {
-        throw new System.NotImplementedException();
+
+        if (effectTimer > 0) return false;
+        disabledEvent.Invoke();
+        return false;
     }
 
-    public override void Update(float deltaTime)
+    public override void UpdateLogic(float deltaTime, TowerScript owner)
     {
-        base.Update(deltaTime);
+        base.UpdateLogic(deltaTime, owner);
         //offlineTowerTimer -= deltaTime;
 
         //if (offlineTowerTimer < 0 && isDisabled == false)

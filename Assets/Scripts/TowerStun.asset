@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5874e7be113d4da4d8523f9450fc9c9a, type: 3}
+  m_Name: TowerStun
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 4085236999656355576, guid: afbfd566b07341f459d016ba19aad04d, type: 3}
+  effectTimerLimit: 3
+  isTopSide: 1
+  offlineTowerTimerLimit: 6
+  recyleTimer: 6
+  isDisabled: 1
+  isReadyToRecyle: 1
+  disabledEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  AmmoCountLimit: 1

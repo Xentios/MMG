@@ -38,7 +38,7 @@ public class TowerManager : MonoBehaviour
     {
         foreach (var tower in towers)
         {
-           tower.towerType.recyleEvent.RemoveListener(RecyleTower);
+           tower.recyleEvent.RemoveListener(RecyleTower);
         }
     }
 
@@ -67,7 +67,7 @@ public class TowerManager : MonoBehaviour
         }      
         var pos = new Vector3(towerSlot.transform.position.x, towerSlot.transform.position.y+ offset_y, 0);
         var newTower=Instantiate(towerPrefabs[index+index_offset], pos, rotation).GetComponent<TowerScript>();
-        newTower.towerType.recyleEvent.AddListener(RecyleTower);
+        newTower.recyleEvent.AddListener(RecyleTower);
         towers.Add(newTower);
         towerSlotPair.Add(newTower, towerSlotInfo);
 
@@ -75,9 +75,9 @@ public class TowerManager : MonoBehaviour
 
 
     //("Remove Tower and Add back to UI");
-    public  void RecyleTower(Tower t)
+    public  void RecyleTower(TowerScript t)
     {
-        TowerScript towerToRemove=null;
+        TowerScript towerToRemove=t;
         foreach (var tower in towers)
         {
             if (tower.towerType == t)

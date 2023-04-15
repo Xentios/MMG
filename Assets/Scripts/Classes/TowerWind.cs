@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class TowerWind : Tower
 {
-    public TowerWind(float timeLimit, bool isTop, float offTimeLimit, float recTime) : base(timeLimit, isTop, offTimeLimit, recTime)
-    {
-    }
+    //public TowerWind(float timeLimit, bool isTop, float offTimeLimit, float recTime) : base(timeLimit, isTop, offTimeLimit, recTime)
+    //{
+    //}
 
 
     public override bool HandleZomWick(EnemyMovement zomWick)
@@ -24,9 +24,9 @@ public class TowerWind : Tower
         return false;
     }
 
-    public override void Update(float deltaTime)
+    public override void UpdateLogic(float deltaTime, TowerScript owner)
     {
-        base.Update(deltaTime);
+        base.UpdateLogic(deltaTime, owner);
         offlineTowerTimer -= deltaTime;
        
         if (offlineTowerTimer < 0 && isDisabled==false)
@@ -40,7 +40,7 @@ public class TowerWind : Tower
             if (recyleTimer <= 0)
             {
                 isReadyToRecyle = true;
-                recyleEvent.Invoke(this);
+                owner.recyleEvent.Invoke(owner);
             }
             
         }

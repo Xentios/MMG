@@ -1,15 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+
+
+[CreateAssetMenu(fileName = "TowerStun")]
 
 public class TowerStun : Tower
 {
-    private int ammoCount=2;
+    public int AmmoCountLimit;
+    private int ammoCount;
 
-    public TowerStun(float timeLimit, bool isTop, float offTimeLimit,float recTime ) : base(timeLimit, isTop, offTimeLimit,recTime)
+    //public TowerStun(float timeLimit, bool isTop, float offTimeLimit,float recTime ) : base(timeLimit, isTop, offTimeLimit,recTime)
+    //{
+    //}
+
+
+    public override void UpdateLogic2(bool isTop)
     {
+        base.UpdateLogic2(isTop);
+        ammoCount = AmmoCountLimit;
     }
-
 
 
     public override bool HandleZomWick(EnemyMovement zomWick)
@@ -18,6 +30,7 @@ public class TowerStun : Tower
         if (effectTimer > 0) return false;
 
         ammoCount--;
+       
         effectTimer = effectTimerLimit;
         if (ammoCount <= 0)
         {
@@ -27,18 +40,20 @@ public class TowerStun : Tower
         return true;
     }
 
-    public override void Update(float deltaTime)
+    public override void UpdateLogic(float deltaTime,TowerScript owner)
     {
-        base.Update(deltaTime);
+        base.UpdateLogic(deltaTime,owner);
         if (isDisabled==false) return;
         if (isReadyToRecyle == true) return;
         offlineTowerTimer -= deltaTime;
         if (offlineTowerTimer < 0)
         {
             isReadyToRecyle = true;
-            recyleEvent.Invoke(this);
+            //owner.recyleEvent.Invoke(owner);
         }
 
     }
 
 }
+
+

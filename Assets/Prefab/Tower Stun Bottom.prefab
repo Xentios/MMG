@@ -178,10 +178,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8008ef71a54f94bb16a425ad730b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerType: {fileID: 11400000, guid: 17eae578226e9634ab3b4130013b995d, type: 2}
+  em: {fileID: 0}
   isTop: 0
   selectedTowerTypes: 1
   rockPrefab: {fileID: 4085236999656355576, guid: afbfd566b07341f459d016ba19aad04d, type: 3}
   visual: {fileID: 1703515674726452707}
+  secondaryVisual: {fileID: 0}
   animator: {fileID: 4096347615093119777}
   shotSound: {fileID: 8300000, guid: b58c54e81a3574f4683c6691f6439606, type: 3}
 --- !u!82 &1703515676445134834
