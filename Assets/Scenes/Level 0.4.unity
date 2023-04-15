@@ -11627,7 +11627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7936548617495593490, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 7936548617495593490, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11664,6 +11664,10 @@ PrefabInstance:
     - target: {fileID: 7936548617495593491, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
       propertyPath: m_Name
       value: Zom Wick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936548617495594476, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
+      propertyPath: myLane
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7936548617495594476, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
       propertyPath: speedModifier.Variable
