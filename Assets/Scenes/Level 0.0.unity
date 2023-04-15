@@ -5206,7 +5206,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 4104452013653898480, guid: 1a109aaeb4b21cb4d83481aee50da905, type: 2}
-  m_audioClip: {fileID: 8300000, guid: e9e6d339cdec6744b8780d94a015febc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4eb324daacccc474e9c998e3173c2a07, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.8
   m_Pitch: 1
@@ -11479,18 +11479,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3228401004914762395, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6880473549560055303, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 6880473549560055303, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.04
-      objectReference: {fileID: 0}
     - target: {fileID: 7936548617495593490, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -11538,54 +11526,6 @@ PrefabInstance:
     - target: {fileID: 7936548617495593491, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
       propertyPath: m_Name
       value: Zom Wick
-      objectReference: {fileID: 0}
-    - target: {fileID: 7936548617495594476, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
-      propertyPath: speedModifier.Variable
-      value: 
-      objectReference: {fileID: 11400000, guid: f5741463bf3ccda48a0ca998e66dbff6, type: 2}
-    - target: {fileID: 7936548617495594476, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
-      propertyPath: speedModifier.UseConstant
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7936548617495594476, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
-      propertyPath: speedModifierref.Variable
-      value: 
-      objectReference: {fileID: 11400000, guid: f5741463bf3ccda48a0ca998e66dbff6, type: 2}
-    - target: {fileID: 7936548617495594476, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
-      propertyPath: speedModifierref.UseConstant
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7936548617495594476, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
-      propertyPath: speedModifierref.ConstantValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7936548617795177898, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 7936548617795177898, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 7936548617795177898, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 7936548617795177898, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 7936548617795177898, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 7936548617795177898, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7936548617795177899, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
