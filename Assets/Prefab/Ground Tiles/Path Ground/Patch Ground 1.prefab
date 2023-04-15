@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8477490053763885914}
   - component: {fileID: 8477490053763885915}
   m_Layer: 0
-  m_Name: Patch Ground
+  m_Name: Patch Ground 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
