@@ -5,18 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+   
     public void Scenetransition()
     {
         SceneManager.LoadScene(1);
@@ -25,21 +14,19 @@ public class MenuController : MonoBehaviour
     {
         SceneManager.LoadScene((int) index);
     }
+    public void Scenetransition(string name)
+    {
+        SceneManager.LoadScene(name);
+    }
 
     public void ExitGame()
     {
-
-
-
-       
 
     #if UNITY_WEBGL
             if (Screen.fullScreen) Screen.fullScreen = false;
     #else
             Application.Quit();
     #endif
-
-
 
     }
 }
