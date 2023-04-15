@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     private GameObject timeBar;
 
     [SerializeField]
-    private float gameTimerInSeconds;
+    public float gameTimerInSeconds;
 
     [SerializeField]
     private GameObject zomWick;
