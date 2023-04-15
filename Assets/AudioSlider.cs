@@ -3,10 +3,10 @@ using UnityEngine.Audio;
 
 public class AudioSlider : MonoBehaviour
 {
+    
+
     [SerializeField]
     private AudioMixer Mixer;
-    [SerializeField]
-    private AudioSource AudioSource;
 
     [SerializeField]
     private AudioMixMode MixMode;
@@ -14,9 +14,12 @@ public class AudioSlider : MonoBehaviour
     [SerializeField]
     private string ExposedParameterName;
 
+    [SerializeField]
+    private AudioSource Example_effect;
     private void Start()
     {
-        Mixer.SetFloat(ExposedParameterName, Mathf.Log10(PlayerPrefs.GetFloat(ExposedParameterName, 1) * 20));
+      
+        Mixer.SetFloat(ExposedParameterName, Mathf.Log10(PlayerPrefs.GetFloat(ExposedParameterName, 0) * 20));
     }
 
     public void OnChangeSlider(float Value)
@@ -24,9 +27,7 @@ public class AudioSlider : MonoBehaviour
       
         switch (MixMode)
         {
-            case AudioMixMode.LinearAudioSourceVolume:
-            AudioSource.volume = Value;
-            break;
+           
             case AudioMixMode.LinearMixerVolume:
             Mixer.SetFloat(ExposedParameterName, (-80 + Value * 80));
             break;
@@ -39,12 +40,16 @@ public class AudioSlider : MonoBehaviour
 
         PlayerPrefs.SetFloat(ExposedParameterName, Value);
         PlayerPrefs.Save();
+
+        if (Example_effect != null && Example_effect.isPlaying==false)
+        {
+            Example_effect.Play();
+        }
     }
 
 
     public enum AudioMixMode
-    {
-        LinearAudioSourceVolume,
+    {       
         LinearMixerVolume,
         LogrithmicMixerVolume
     }
