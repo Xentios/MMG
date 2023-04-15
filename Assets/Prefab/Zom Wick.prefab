@@ -397,8 +397,11 @@ MonoBehaviour:
   walkAudioSource: {fileID: 378506244}
   bulletHurtAudioSource: {fileID: 2451210957604388736}
   visualFX: {fileID: 3992904239470137740}
+  speedModifier:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   stunTimer: 0
-  isStunned: 0
 --- !u!50 &7936548617495594478
 Rigidbody2D:
   serializedVersion: 4
@@ -445,7 +448,7 @@ AudioSource:
   m_GameObject: {fileID: 7936548617495593491}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8285619301792976889, guid: 1a109aaeb4b21cb4d83481aee50da905, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.826
@@ -541,7 +544,7 @@ AudioSource:
   m_GameObject: {fileID: 7936548617495593491}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8285619301792976889, guid: 1a109aaeb4b21cb4d83481aee50da905, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0c7c949fa56e0ed45978acc134a6fc22, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.672
@@ -637,7 +640,7 @@ AudioSource:
   m_GameObject: {fileID: 7936548617495593491}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8285619301792976889, guid: 1a109aaeb4b21cb4d83481aee50da905, type: 2}
   m_audioClip: {fileID: 8300000, guid: 7716c73033015ba40bc20ff0302f2002, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -805,7 +808,7 @@ AudioSource:
   m_GameObject: {fileID: 7936548617495593491}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8285619301792976889, guid: 1a109aaeb4b21cb4d83481aee50da905, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

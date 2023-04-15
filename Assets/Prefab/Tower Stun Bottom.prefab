@@ -182,6 +182,7 @@ MonoBehaviour:
   selectedTowerTypes: 1
   rockPrefab: {fileID: 4085236999656355576, guid: afbfd566b07341f459d016ba19aad04d, type: 3}
   visual: {fileID: 1703515674726452707}
+  secondaryVisual: {fileID: 0}
   animator: {fileID: 4096347615093119777}
   shotSound: {fileID: 8300000, guid: b58c54e81a3574f4683c6691f6439606, type: 3}
 --- !u!82 &1703515676445134834
@@ -193,7 +194,7 @@ AudioSource:
   m_GameObject: {fileID: 1703515676445134838}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8285619301792976889, guid: 1a109aaeb4b21cb4d83481aee50da905, type: 2}
   m_audioClip: {fileID: 8300000, guid: b58c54e81a3574f4683c6691f6439606, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
