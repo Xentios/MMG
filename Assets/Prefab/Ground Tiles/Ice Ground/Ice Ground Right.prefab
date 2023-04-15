@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8477490053763885914}
   - component: {fileID: 8477490053763885915}
   - component: {fileID: 8477490053763885860}
-  - component: {fileID: 6623933557502057166}
+  - component: {fileID: 3565142979027084964}
   m_Layer: 3
-  m_Name: Default Ground
+  m_Name: Ice Ground Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2116939717, guid: 5bc9c86bab083a1428d7c4cb93e9aea7, type: 3}
+  m_Sprite: {fileID: -1206738942, guid: 96e6a8a4f1444b248a53ce07a8ff6932, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,12 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e5b45dddf07ab4d84042eb4aae8d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainType: 0
+  terrainType: 2
   terrainSpeed:
     UseConstant: 1
     ConstantValue: 0.01
     Variable: {fileID: 0}
---- !u!61 &6623933557502057166
+--- !u!61 &3565142979027084964
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
