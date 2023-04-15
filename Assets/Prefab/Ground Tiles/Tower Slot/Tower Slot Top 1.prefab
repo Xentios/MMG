@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOccupied: 0
-  isTop: 0
+  isTop: 1
 --- !u!61 &1713935440
 BoxCollider2D:
   m_ObjectHideFlags: 0
