@@ -73,6 +73,7 @@ public class EnemyMovement : MonoBehaviour
         stunTimer = stunTimerSet;
         actionTimer = actionTimerReset;        
         StartCoroutine(CheckNewTerrainEvery1Second());
+        rb2D.velocity = Vector2.left * 2;
     }
 
     public void Stun()
@@ -138,6 +139,35 @@ public class EnemyMovement : MonoBehaviour
        
     }
 
+    private void FixedUpdate()
+    {
+
+        if (pushResistTimer < 0f)
+        {
+            rb2D.velocity = new Vector2(-2, rb2D.velocity.y);
+            pushResistTimer = pushResistTimerSet;
+        }
+
+        if (isStunned)
+        {
+            if (isStunApplied == false && rb2D.velocity.x < 0f)
+            {
+                if (terrainType != TerrainFeatures.TerrainType.Ice) rb2D.velocity = new Vector2(0, rb2D.velocity.y);
+                if (terrainType == TerrainFeatures.TerrainType.Booster) rb2D.velocity = new Vector2(-2, rb2D.velocity.y);
+                isStunApplied = true;
+            }
+        }
+        else
+        {
+           // rb2D.AddForce(Vector2.left * speedModifier, ForceMode2D.Impulse);
+           
+
+            if (readyToChangeLane) ChangeLane();
+        }
+
+
+    }
+
     private void ChooseAction()
     {        
         StartCoroutine(FlashWarning());
@@ -185,31 +215,7 @@ public class EnemyMovement : MonoBehaviour
         
     }
 
-    private void FixedUpdate()
-    {
-        
-        if (pushResistTimer < 0f)
-        {
-            rb2D.velocity = new Vector2(0, rb2D.velocity.y);
-            pushResistTimer = pushResistTimerSet;
-        }
-
-        if (isStunned)
-        {           
-            if (isStunApplied == false&& rb2D.velocity.x < 0f)
-            {
-                if (terrainType != TerrainFeatures.TerrainType.Ice) rb2D.velocity = new Vector2(0, rb2D.velocity.y);
-                if (terrainType == TerrainFeatures.TerrainType.Booster) rb2D.velocity = new Vector2(-2, rb2D.velocity.y);
-                isStunApplied = true;
-            }           
-        }
-        else
-        {
-            rb2D.AddForce(Vector2.left * speedModifier, ForceMode2D.Impulse);
-           
-            if (readyToChangeLane) ChangeLane();
-        }
-    }
+ 
 
     public void PushVertical(Vector2 pushForce)
     {

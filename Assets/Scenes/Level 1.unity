@@ -1078,7 +1078,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &116841036
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11313,6 +11313,10 @@ PrefabInstance:
       propertyPath: speedModifierref.Variable
       value: 
       objectReference: {fileID: 11400000, guid: f5741463bf3ccda48a0ca998e66dbff6, type: 2}
+    - target: {fileID: 7936548617495594476, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
+      propertyPath: speedModifier.ConstantValue
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7936548617495594476, guid: 3cb5f6d083d20b247a0a5deb1649880a, type: 3}
       propertyPath: speedModifierref.UseConstant
       value: 0
